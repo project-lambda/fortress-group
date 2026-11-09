@@ -8,6 +8,7 @@ import { STATUS_LABEL, type Area, type Project, type ProjectStatus } from "@/lib
 import Image from "next/image";
 import Link from "next/link";
 import Select from "./Select";
+import { useLenis } from "lenis/react";
 
 const STATUSES: (ProjectStatus | "all")[] = ["all", "sale-ongoing", "ongoing", "completed", "upcoming"];
 
@@ -20,10 +21,12 @@ export default function ProjectsExplorer({ projects, areas }: { projects: Projec
   const [view, setView] = useState<"grid" | "list">("grid");
 
   const topRef = useRef<HTMLDivElement>(null);
+  const lenis = useLenis();
   const scrollToTop = () => {
     const el = topRef.current; if (!el) return;
     const y = el.getBoundingClientRect().top + window.scrollY - 88;
-    if (window.scrollY > y) window.scrollTo({ top: y, behavior: "smooth" });
+    if (window.scrollY <= y) return;
+    if (lenis) lenis.scrollTo(y, { duration: 1 }); else window.scrollTo({ top: y, behavior: "smooth" });
   };
   const set = (k: string, v: string) => {
     const n = new URLSearchParams(sp.toString());
