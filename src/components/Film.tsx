@@ -1,18 +1,27 @@
 "use client";
 import Image from "next/image";
 import { useRef, useState } from "react";
-import { AnimatePresence, motion, useScroll, useTransform } from "motion/react";
-import { Play } from "lucide-react";
+import { motion, useInView, useScroll, useTransform } from "motion/react";
+import { Volume2, VolumeX, Maximize2 } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { company } from "@/lib/data";
 
 export default function Film() {
   const ref = useRef<HTMLDivElement>(null);
-  const [playing, setPlaying] = useState(false);
+  const frame = useRef<HTMLIFrameElement>(null);
+  const inView = useInView(ref, { once: true, margin: "200px 0px" });
+  const [ready, setReady] = useState(false);
+  const [muted, setMuted] = useState(true);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const scale = useTransform(scrollYProgress, [0, 0.5], [0.92, 1]);
   const radius = useTransform(scrollYProgress, [0, 0.5], [24, 4]);
-  const y = useTransform(scrollYProgress, [0, 1], [40, -40]);
+
+  const send = (func: string) => frame.current?.contentWindow?.postMessage(JSON.stringify({ event: "command", func, args: [] }), "*");
+  const toggleSound = () => { send(muted ? "unMute" : "mute"); setMuted((m) => !m); };
+  const fullscreen = () => frame.current?.requestFullscreen?.();
+
+  const src = `https://www.youtube-nocookie.com/embed/${company.videoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${company.videoId}&playsinline=1&rel=0&modestbranding=1&enablejsapi=1&iv_load_policy=3`;
+
   return (
     <section ref={ref} className="relative py-24 md:py-32 overflow-hidden">
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
@@ -24,39 +33,36 @@ export default function Film() {
           <p className="text-sm text-mist max-w-sm">A short overview of the projects, the people and the care that goes into every Fortress address.</p>
         </Reveal>
         <motion.div style={{ scale, borderRadius: radius }} className="relative aspect-video w-full overflow-hidden bg-ink-2 shadow-[0_40px_120px_-30px_rgba(0,0,0,0.9)]">
-          <AnimatePresence mode="wait">
-            {playing ? (
-              <motion.iframe
-                key="player"
-                initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                className="absolute inset-0 h-full w-full"
-                src={`https://www.youtube-nocookie.com/embed/${company.videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`}
-                title="Fortress Group Project Overview Video"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-            ) : (
-              <motion.button key="poster" exit={{ opacity: 0, scale: 1.04 }} transition={{ duration: 0.6 }} onClick={() => setPlaying(true)} aria-label="Play the Fortress Group film" className="group absolute inset-0 w-full text-left">
-                <motion.div style={{ y }} className="absolute -inset-y-12 inset-x-0">
-                  <Image src="/images/film-poster.jpg" alt="Fortress Group project overview" fill sizes="100vw" className="object-cover transition-transform duration-[2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105" />
-                </motion.div>
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-ink/10" />
-                <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 grid place-items-center">
-                  <span className="absolute h-28 w-28 md:h-36 md:w-36 rounded-full border border-white/30 animate-ping [animation-duration:2.4s]" />
-                  <span className="relative grid h-20 w-20 md:h-28 md:w-28 place-items-center rounded-full bg-stone text-ink transition-all duration-500 group-hover:bg-gold group-hover:scale-110">
-                    <Play size={28} className="ml-1 fill-current" />
-                  </span>
-                </span>
-                <div className="absolute inset-x-0 bottom-0 p-6 md:p-10 flex items-end justify-between gap-6">
-                  <div>
-                    <p className="eyebrow mb-2">Project overview</p>
-                    <p className="font-display text-2xl md:text-4xl font-light">Watch the Fortress Group film</p>
-                  </div>
-                  <span className="hidden md:inline text-[11px] tracking-[0.3em] uppercase text-stone/70">YouTube · HD</span>
-                </div>
-              </motion.button>
-            )}
-          </AnimatePresence>
+          {inView && (
+            <iframe
+              ref={frame}
+              onLoad={() => setTimeout(() => setReady(true), 900)}
+              className="absolute inset-0 h-full w-full"
+              src={src}
+              title="Fortress Group Project Overview Video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+              allowFullScreen
+            />
+          )}
+          {/* poster fades out once the player is running */}
+          <motion.div animate={{ opacity: ready ? 0 : 1 }} transition={{ duration: 1 }} className={`absolute inset-0 ${ready ? "pointer-events-none" : ""}`}>
+            <Image src="/images/film-poster.jpg" alt="Fortress Group project overview" fill sizes="100vw" className="object-cover" />
+            <div className="absolute inset-0 bg-ink/30" />
+          </motion.div>
+          {/* edge vignette, lets clicks through to the player */}
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-ink/20" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 p-5 md:p-10 flex items-end justify-between gap-6">
+            <div>
+              <p className="eyebrow mb-2">Project overview</p>
+              <p className="font-display text-2xl md:text-4xl font-light">The Fortress Group film</p>
+            </div>
+            <div className="pointer-events-auto flex items-center gap-2">
+              <button onClick={toggleSound} aria-pressed={!muted} className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-ink/50 backdrop-blur px-4 h-11 text-[11px] tracking-[0.25em] uppercase text-stone hover:border-gold/70 hover:text-gold-2 transition-colors">
+                {muted ? <VolumeX size={15} /> : <Volume2 size={15} />}<span className="hidden sm:inline">{muted ? "Sound on" : "Mute"}</span>
+              </button>
+              <button onClick={fullscreen} aria-label="Fullscreen" className="grid h-11 w-11 place-items-center rounded-full border border-white/30 bg-ink/50 backdrop-blur text-stone hover:border-gold/70 hover:text-gold-2 transition-colors"><Maximize2 size={15} /></button>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>
