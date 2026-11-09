@@ -4,7 +4,7 @@ import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import Preloader from "@/components/Preloader";
+import Splash from "@/components/Splash";
 import FloatingContact from "@/components/FloatingContact";
 import { company } from "@/lib/data";
 
@@ -27,7 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${display.variable} ${sans.variable}`}>
       <body className="grain">
         <SmoothScroll>
-          <Preloader />
+          <Splash />
           <Navbar />
           <main>{children}</main>
           <Footer />

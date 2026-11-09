@@ -1,15 +1,26 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "motion/react";
+import { motion, useMotionTemplate, useMotionValue, useSpring } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { STATUS_LABEL, type Project } from "@/lib/data";
 
 export default function ProjectCard({ p, index = 0, aspect = "aspect-[4/5]" }: { p: Project; index?: number; aspect?: string }) {
+  const mx = useMotionValue(0.5), my = useMotionValue(0.5);
+  const rx = useSpring(useMotionValue(0), { stiffness: 200, damping: 20 });
+  const ry = useSpring(useMotionValue(0), { stiffness: 200, damping: 20 });
+  const glare = useMotionTemplate`radial-gradient(circle at ${useSpring(mx, { stiffness: 200, damping: 25 })} ${useSpring(my, { stiffness: 200, damping: 25 })}, rgba(255,255,255,0.18), transparent 55%)`;
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+    mx.set(x); my.set(y); rx.set((0.5 - y) * 10); ry.set((x - 0.5) * 12);
+  };
+  const onLeave = () => { rx.set(0); ry.set(0); mx.set(0.5); my.set(0.5); };
   return (
-    <motion.article layout initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.96 }} transition={{ duration: 0.8, delay: (index % 6) * 0.06, ease: [0.16, 1, 0.3, 1] }} className="group">
+    <motion.article layout initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.96 }} transition={{ duration: 0.8, delay: (index % 6) * 0.06, ease: [0.16, 1, 0.3, 1] }} className="group" style={{ perspective: 1200 }}>
       <Link href={`/projects/${p.slug}`} className="block">
-        <div className={`relative ${aspect} overflow-hidden rounded-sm bg-ink-3`}>
+        <motion.div onMouseMove={onMove} onMouseLeave={onLeave} style={{ rotateX: rx, rotateY: ry, transformStyle: "preserve-3d" }} className={`relative ${aspect} overflow-hidden rounded-sm bg-ink-3 will-change-transform`}>
+          <motion.div className="pointer-events-none absolute inset-0 z-10 mix-blend-overlay" style={{ background: glare }} />
           {p.image && (
             <Image src={p.image} alt={p.name} fill sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw" className="object-cover transition-transform duration-[1.4s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110" />
           )}
@@ -25,7 +36,7 @@ export default function ProjectCard({ p, index = 0, aspect = "aspect-[4/5]" }: {
             <h3 className="font-display text-2xl md:text-3xl leading-tight">{p.name}</h3>
             {p.size && <p className="mt-1 text-xs text-stone/70 tracking-wider">{p.size.toLocaleString()} sft apartments</p>}
           </div>
-        </div>
+        </motion.div>
       </Link>
     </motion.article>
   );

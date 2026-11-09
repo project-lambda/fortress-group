@@ -7,29 +7,18 @@ import { ArrowLeft, ArrowUpRight, BedDouble, Building2, Car, MapPin, Ruler } fro
 import { Reveal, ImageReveal } from "./Reveal";
 import ProjectCard from "./ProjectCard";
 import LeadForm from "./LeadForm";
+import ProjectSpecs from "./ProjectSpecs";
+import Construction from "./Construction";
+import { parseProject } from "@/lib/specs";
 import { STATUS_LABEL, company, type Project } from "@/lib/data";
-
-function parseSpecs(lines: string[]) {
-  const specs: { k: string; v: string }[] = [];
-  const amenities: string[] = [];
-  const paragraphs: string[] = [];
-  for (const raw of lines) {
-    const l = raw.replace(/^[✅📍>\-•\s]+/, "").trim();
-    if (!l) continue;
-    const m = l.match(/^(.+?)[:：]\s*(.+)$/);
-    if (m && l.length < 60) { specs.push({ k: m[1].trim(), v: m[2].trim() }); continue; }
-    if (l.length < 28 && !/[।.]$/.test(l)) { amenities.push(l); continue; }
-    paragraphs.push(l);
-  }
-  return { specs, amenities, paragraphs };
-}
 
 export default function ProjectDetail({ p, related }: { p: Project; related: Project[] }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
-  const { specs, amenities, paragraphs } = parseSpecs(p.description);
+  const parsed = parseProject(p);
+  const paragraphs = parsed.intro;
   const bn = paragraphs.some((t) => /[ঀ-৿]/.test(t));
   const facts = [
     { icon: MapPin, k: "Location", v: p.area ?? "Dhaka" },
@@ -78,24 +67,7 @@ export default function ProjectDetail({ p, related }: { p: Project; related: Pro
               <p>Contact our sales team for the latest floor plans, pricing and availability.</p>
             </Reveal>
           )}
-          {specs.length > 0 && (
-            <Reveal delay={0.2} className="mt-12">
-              <p className="eyebrow mb-5">Specifications</p>
-              <dl className="grid sm:grid-cols-2 gap-x-10">
-                {specs.map((s) => (
-                  <div key={s.k} className="flex justify-between gap-4 border-b hairline py-3 text-sm"><dt className="text-mist">{s.k}</dt><dd className="text-right">{s.v}</dd></div>
-                ))}
-              </dl>
-            </Reveal>
-          )}
-          {amenities.length > 0 && (
-            <Reveal delay={0.25} className="mt-12">
-              <p className="eyebrow mb-5">Features & amenities</p>
-              <ul className="flex flex-wrap gap-2">
-                {amenities.map((a, i) => <li key={i} className="rounded-full border hairline px-4 py-2 text-sm text-stone/80 hover:border-gold/50 transition-colors">{a}</li>)}
-              </ul>
-            </Reveal>
-          )}
+          <div className="mt-14"><ProjectSpecs parsed={parsed} fallbackArea={p.area} /></div>
           {p.gallery.length > 0 && (
             <div className="mt-14 grid gap-6">
               {p.gallery.map((g, i) => (
@@ -119,10 +91,14 @@ export default function ProjectDetail({ p, related }: { p: Project; related: Pro
             </div>
           </Reveal>
           <Reveal delay={0.1} className="rounded-sm overflow-hidden border hairline">
-            <iframe title="map" loading="lazy" className="h-64 w-full grayscale invert-[0.9] contrast-[0.9]" src={`https://www.google.com/maps?q=${encodeURIComponent(`${p.name} ${p.area ?? ""} Dhaka`)}&output=embed`} />
+            <iframe title="map" loading="lazy" className="h-64 w-full grayscale invert-[0.9] contrast-[0.9]" src={`https://www.google.com/maps?q=${encodeURIComponent(parsed.facts.find((f) => f.key === "address" && !/[\u0980-\u09FF]/.test(f.value))?.value ?? `${p.name} ${p.area ?? ""} Dhaka`)}&output=embed`} />
           </Reveal>
         </aside>
       </section>
+
+      {parsed.structure && (
+        <Construction structure={parsed.structure} eyebrow={`Building ${p.name.replace(/^Fortress /, "")}`} title={<>{parsed.structure.floors} floors, rising from <em className="text-gold">{p.area ?? "Dhaka"}</em></>} />
+      )}
 
       {related.length > 0 && (
         <section className="mx-auto max-w-[1600px] px-5 md:px-10 pb-28">

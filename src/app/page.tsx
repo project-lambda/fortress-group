@@ -8,6 +8,7 @@ import ShowcaseGrid from "@/components/ShowcaseGrid";
 import Experts from "@/components/Experts";
 import Awards from "@/components/Awards";
 import CTA from "@/components/CTA";
+import Construction from "@/components/Construction";
 import { areas, completedProjects, featuredProjects, ongoingProjects } from "@/lib/data";
 
 export default function Home() {
@@ -22,6 +23,7 @@ export default function Home() {
         <ShowcaseGrid eyebrow="Sale ongoing" title={<>Choose your <em className="text-gold">dream</em> project</>} items={featuredProjects} href="/projects?status=sale-ongoing" />
       </div>
       <AboutTeaser />
+      <Construction structure={{ basements: 2, ground: true, mezzanine: true, floors: 16, raw: "B2+B1+G+M+16", code: "B2+B1+G+M+16" }} />
       <AreasGrid areas={areas} />
       <ShowcaseGrid eyebrow="Ongoing" title={<>Rising across <em className="text-gold">Dhaka</em></>} items={ongoingProjects.filter((p) => !p.featured)} href="/projects?status=ongoing" />
       <Experts />
