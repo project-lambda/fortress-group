@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -10,7 +11,7 @@ export function generateStaticParams() { return [...directors, ...experts].map((
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   return { title: getPerson((await params).slug)?.name ?? "Team" };
 }
-export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
+async function Content({ params }: { params: Promise<{ slug: string }> }) {
   const p = getPerson((await params).slug);
   if (!p) notFound();
   return (
@@ -28,4 +29,8 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
       </div>
     </section>
   );
+}
+
+export default function Page(props: { params: Promise<{ slug: string }> }) {
+  return <Suspense><Content {...props} /></Suspense>;
 }

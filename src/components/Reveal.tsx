@@ -33,7 +33,7 @@ export function ImageReveal({ children, className = "", delay = 0 }: { children:
   const inView = useInView(ref, { once: true, margin: "-10% 0px" });
   return (
     <motion.div ref={ref} className={`overflow-hidden ${className}`} initial={{ clipPath: "inset(0 0 100% 0)" }} animate={inView ? { clipPath: "inset(0 0 0% 0)" } : {}} transition={{ duration: 1.2, delay, ease: [0.76, 0, 0.24, 1] }}>
-      <motion.div initial={{ scale: 1.25 }} animate={inView ? { scale: 1 } : {}} transition={{ duration: 1.6, delay, ease: [0.16, 1, 0.3, 1] }} className="h-full w-full">
+      <motion.div initial={{ scale: 1.25 }} animate={inView ? { scale: 1 } : {}} transition={{ duration: 1.6, delay, ease: [0.16, 1, 0.3, 1] }} className="relative h-full w-full">
         {children}
       </motion.div>
     </motion.div>
