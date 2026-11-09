@@ -13,17 +13,19 @@ export default function LeadForm({
   projects,
   compact = false,
   submitLabel = "Send message",
+  initialMessage = "",
 }: {
   source: string;
   project?: string;
   projects?: { slug: string; title: string }[];
   compact?: boolean;
   submitLabel?: string;
+  initialMessage?: string;
 }) {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
   const [delivered, setDelivered] = useState(true);
-  const [form, setForm] = useState({ name: "", phone: "", email: "", project: project ?? "", message: "", company: "" });
+  const [form, setForm] = useState({ name: "", phone: "", email: "", project: project ?? "", message: initialMessage, company: "" });
   const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => setForm((f) => ({ ...f, [k]: e.target.value }));
 
   async function submit(e: React.FormEvent) {

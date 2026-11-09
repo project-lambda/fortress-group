@@ -126,3 +126,23 @@ body {
 .fg-popup .leaflet-popup-tip { background: #14171c; }
 .leaflet-control-attribution { background: rgba(11,13,16,.7) !important; color: #6a6f76 !important; font-size: 9px !important; }
 .leaflet-control-attribution a { color: #9aa0a6 !important; }
+
+/* dual range slider */
+.range input[type="range"] {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  -webkit-appearance: none; appearance: none; background: transparent; pointer-events: none; margin: 0;
+}
+.range input[type="range"]::-webkit-slider-runnable-track { background: transparent; height: 100%; }
+.range input[type="range"]::-moz-range-track { background: transparent; height: 100%; }
+.range input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none; pointer-events: auto; cursor: grab;
+  width: 16px; height: 16px; margin-top: 2px; border-radius: 999px;
+  background: var(--color-ink); border: 1.5px solid var(--color-gold-2); box-shadow: 0 0 0 4px rgb(31 154 122 / 0.15);
+  transition: transform .2s;
+}
+.range input[type="range"]::-moz-range-thumb {
+  pointer-events: auto; cursor: grab; width: 16px; height: 16px; border-radius: 999px;
+  background: var(--color-ink); border: 1.5px solid var(--color-gold-2); box-shadow: 0 0 0 4px rgb(31 154 122 / 0.15);
+}
+.range input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); cursor: grabbing; }
+.range input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px rgb(56 176 128 / 0.45); }

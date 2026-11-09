@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion, useMotionTemplate, useMotionValue, useSpring } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { STATUS_LABEL, type Project } from "@/lib/data";
+import ShortlistButton from "./ShortlistButton";
 
 export default function ProjectCard({ p, index = 0, aspect = "aspect-[4/5]" }: { p: Project; index?: number; aspect?: string }) {
   const mx = useMotionValue(0.5), my = useMotionValue(0.5);
@@ -28,10 +29,11 @@ export default function ProjectCard({ p, index = 0, aspect = "aspect-[4/5]" }: {
           <span className={`absolute left-4 top-4 rounded-full px-3 py-1 text-[10px] tracking-[0.25em] uppercase backdrop-blur ${p.status === "sale-ongoing" ? "bg-gold text-ink" : p.status === "completed" ? "bg-white/15 text-stone" : "bg-ink/50 text-stone border hairline"}`}>
             {STATUS_LABEL[p.status]}
           </span>
-          <span className="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full border border-white/30 text-stone opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+          <ShortlistButton slug={p.slug} className="absolute right-4 top-4 z-20 h-10 w-10" />
+          <span className="absolute right-4 bottom-5 grid h-10 w-10 place-items-center rounded-full border border-white/30 text-stone opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
             <ArrowUpRight size={16} />
           </span>
-          <div className="absolute inset-x-0 bottom-0 p-5">
+          <div className="absolute inset-x-0 bottom-0 p-5 pr-16">
             <p className="eyebrow mb-2 opacity-80">{p.area ?? "Dhaka"}</p>
             <h3 className="font-display text-2xl md:text-3xl leading-tight">{p.name}</h3>
             {p.size && <p className="mt-1 text-xs text-stone/70 tracking-wider">{p.size.toLocaleString()} sft apartments</p>}

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Phone, ArrowUpRight } from "lucide-react";
 import { company, featuredProjects } from "@/lib/data";
+import ShortlistLink from "./ShortlistLink";
 
 const links = [
   { href: "/", label: "Home" },
@@ -14,6 +15,7 @@ const links = [
   { href: "/team", label: "Leadership" },
   { href: "/news", label: "News" },
   { href: "/contact", label: "Contact" },
+  { href: "/shortlist", label: "Shortlist" },
 ];
 
 export default function Navbar() {
@@ -56,6 +58,7 @@ export default function Navbar() {
             <Link href="/contact" className="hidden md:inline-flex items-center gap-2 rounded-full border border-gold/70 bg-ink/40 backdrop-blur px-5 py-2 text-xs tracking-[0.2em] uppercase text-gold-2 hover:bg-gold hover:text-ink transition-all duration-500">
               Book a visit
             </Link>
+            <ShortlistLink />
             <button aria-label="Menu" onClick={() => setOpen((v) => !v)} className="group relative h-11 w-11 rounded-full border border-white/25 bg-ink/40 backdrop-blur flex flex-col items-center justify-center gap-1.5 hover:border-gold/60 transition-colors">
               <motion.span animate={open ? { rotate: 45, y: 4 } : { rotate: 0, y: 0 }} className="block h-px w-5 bg-stone" />
               <motion.span animate={open ? { rotate: -45, y: -4 } : { rotate: 0, y: 0 }} className="block h-px w-5 bg-stone" />

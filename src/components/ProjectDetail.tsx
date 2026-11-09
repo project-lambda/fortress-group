@@ -9,6 +9,9 @@ import ProjectCard from "./ProjectCard";
 import LeadForm from "./LeadForm";
 import ProjectSpecs from "./ProjectSpecs";
 import Construction from "./Construction";
+import FloorSelector from "./FloorSelector";
+import Nearby from "./Nearby";
+import ShortlistButton from "./ShortlistButton";
 import { parseProject } from "@/lib/specs";
 import { STATUS_LABEL, company, type Project } from "@/lib/data";
 
@@ -39,6 +42,7 @@ export default function ProjectDetail({ p, related }: { p: Project; related: Pro
           <Reveal delay={0.1}><p className="eyebrow mb-4">{STATUS_LABEL[p.status]} · {p.area}</p></Reveal>
           <Reveal delay={0.2}><h1 className="font-display text-6xl md:text-[7vw] font-light leading-[0.95]">{p.name}</h1></Reveal>
           {p.size && <Reveal delay={0.3}><p className="mt-4 font-display text-2xl text-stone/70">{p.size.toLocaleString()} sft apartments</p></Reveal>}
+          <Reveal delay={0.4} className="mt-8"><ShortlistButton slug={p.slug} label size={14} className="h-11 pl-3.5 pr-4" /></Reveal>
         </div>
       </section>
 
@@ -93,8 +97,13 @@ export default function ProjectDetail({ p, related }: { p: Project; related: Pro
           <Reveal delay={0.1} className="rounded-sm overflow-hidden border hairline">
             <iframe title="map" loading="lazy" className="h-64 w-full grayscale invert-[0.9] contrast-[0.9]" src={`https://www.google.com/maps?q=${encodeURIComponent(parsed.facts.find((f) => f.key === "address" && !/[\u0980-\u09FF]/.test(f.value))?.value ?? `${p.name} ${p.area ?? ""} Dhaka`)}&output=embed`} />
           </Reveal>
+          <Reveal delay={0.15}><Nearby p={p} /></Reveal>
         </aside>
       </section>
+
+      {parsed.structure && (
+        <FloorSelector structure={parsed.structure} facts={parsed.facts} groups={parsed.groups} size={p.size} towers={parseInt(parsed.facts.find((f) => f.key === "towers")?.value ?? "1", 10)} name={p.name} />
+      )}
 
       {parsed.structure && (
         <Construction towers={parseInt(parsed.facts.find((f) => f.key === "towers")?.value ?? "1", 10)} structure={parsed.structure} eyebrow={`Building ${p.name.replace(/^Fortress /, "")}`} title={<>{parsed.structure.floors} floors, rising from <em className="text-gold">{p.area ?? "Dhaka"}</em></>} />
