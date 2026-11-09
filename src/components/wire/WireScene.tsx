@@ -114,9 +114,10 @@ function Model({ progress, params }: { progress: MotionValue<number>; params: Wi
     // camera orbit + mouse parallax
     const theta = -0.7 + p * 0.95 + pointer.x * 0.06;
     const radius = 180 + p * 60; const camY = 72 + p * 55 + pointer.y * -5;
-    const target = camTarget.current.lerp(new THREE.Vector3(0, 6 + p * (yTop * 0.5), 0), 0.08);
+    const k = 1 - Math.exp(-dt * 5);
+    const target = camTarget.current.lerp(new THREE.Vector3(0, 6 + p * (yTop * 0.5), 0), k);
     const desired = new THREE.Vector3(Math.sin(theta) * radius, camY, Math.cos(theta) * radius);
-    state.camera.position.lerp(desired, 0.08); state.camera.lookAt(target);
+    state.camera.position.lerp(desired, k); state.camera.lookAt(target);
   });
 
   return <primitive object={built.root} />;
