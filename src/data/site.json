@@ -1194,5 +1194,119 @@
       "image": "/images/3-1.jpeg",
       "date": "2025-08-15"
     }
+  ],
+  "values": [
+    {
+      "t": "Integrity",
+      "d": "We operate with honesty, transparency, and accountability in all that we do."
+    },
+    {
+      "t": "Innovation",
+      "d": "We embrace technology and creativity to build smarter, more efficient living spaces."
+    },
+    {
+      "t": "Quality",
+      "d": "From foundation to finish, we uphold the highest standards in every project."
+    },
+    {
+      "t": "Customer Focus",
+      "d": "We listen, respond, and deliver value that exceeds our clients' expectations."
+    },
+    {
+      "t": "Sustainability",
+      "d": "We design for the future, prioritising environmental responsibility and energy efficiency."
+    },
+    {
+      "t": "Teamwork",
+      "d": "We believe collaboration drives success, within our team and with our partners."
+    },
+    {
+      "t": "Community Commitment",
+      "d": "We aim to enrich the neighbourhoods we build in by promoting social and economic development."
+    }
+  ],
+  "concernPages": [
+    {
+      "slug": "fortress-holdings",
+      "title": "Fortress Holdings Ltd.",
+      "short": "Holdings",
+      "sector": "Group holding company",
+      "image": "/images/Fortress-Holdings.png",
+      "hero": "/images/4.jpeg",
+      "tagline": "The parent company behind every Fortress address.",
+      "status": "active",
+      "summary": [
+        "Fortress Holdings Limited is the founding company of the group, established by Chairman Md. Gious Uddin. Together with Fortress Real Estate Limited it has already established itself in the housing sector of Bangladesh, consistently delivering customer satisfaction.",
+        "The company is committed to establishing a unique paradigm in housing, property management, land development and logistics services, introducing a new concept to the housing sector.",
+        "Its principal asset is integrity and honesty: ensuring quality while maintaining trust, with skilled architects, engineers and workers building quality homes as per the customer's demand."
+      ]
+    },
+    {
+      "slug": "fortress-real-estate",
+      "title": "Fortress Real Estate Ltd.",
+      "short": "Real Estate",
+      "sector": "Residential development",
+      "image": "/images/Fortress-Real-Estate.png",
+      "hero": "/images/Portia.jpg",
+      "tagline": "35+ residential projects across Dhaka's prime neighbourhoods.",
+      "status": "active",
+      "summary": [
+        "Fortress Real Estate Limited is the development arm of the group, responsible for the portfolio of over 35 residential projects in Bashundhara R/A, Jolshiri Abashon, Purbachal, Shawdesh Sornali, Mirpur and Uttara.",
+        "Its mission is to create high-quality, exclusive apartment complexes in prime locations across Dhaka and other major cities of Bangladesh, with top-tier construction and premium finishing.",
+        "More than 500 families have already received their homes, and the company is an ISO-certified organisation."
+      ]
+    },
+    {
+      "slug": "fortress-home-solutions",
+      "title": "Fortress Home Solutions",
+      "short": "Home Solutions",
+      "sector": "Interiors & after-sales",
+      "image": null,
+      "hero": "/images/3-1.jpeg",
+      "tagline": "Finishing, fit-out and care for Fortress homes.",
+      "status": "coming-soon",
+      "summary": [
+        "Fortress Home Solutions supports owners after handover with interior, finishing and home-care services for Fortress apartments."
+      ]
+    },
+    {
+      "slug": "fortress-agro-farms",
+      "title": "Fortress Agro & Farms",
+      "short": "Agro & Farms",
+      "sector": "Agriculture",
+      "image": "/images/Fortress-Agro.png",
+      "hero": "/images/4.jpeg",
+      "tagline": "The group's agricultural venture.",
+      "status": "coming-soon",
+      "summary": [
+        "Fortress Agro & Farms is the group's agriculture and farming concern."
+      ]
+    },
+    {
+      "slug": "fortress-foundation",
+      "title": "Fortress Foundation",
+      "short": "Foundation",
+      "sector": "Social responsibility",
+      "image": "/images/Fortress-Foundation.png",
+      "hero": "/images/csr-1.jpg",
+      "tagline": "Giving back to the communities we build in.",
+      "status": "coming-soon",
+      "summary": [
+        "Fortress Foundation carries the group's community commitment: enriching the neighbourhoods Fortress builds in by promoting social and economic development."
+      ]
+    },
+    {
+      "slug": "fortress-traders",
+      "title": "Fortress Traders",
+      "short": "Traders",
+      "sector": "Trading & supply",
+      "image": null,
+      "hero": "/images/3.jpeg",
+      "tagline": "Sourcing and supply for the group.",
+      "status": "coming-soon",
+      "summary": [
+        "Fortress Traders is the trading and supply concern of the group."
+      ]
+    }
   ]
 }

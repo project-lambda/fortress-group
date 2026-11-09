@@ -1,14 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
-import { company, areas } from "@/lib/data";
+import { ABOUT_LINKS, CONCERN_LINKS, company, areas } from "@/lib/data";
 import Year from "./Year";
 
 export default function Footer() {
   return (
     <footer className="relative border-t hairline bg-ink-2">
       <div className="mx-auto max-w-[1600px] px-5 md:px-10 py-20">
-        <div className="grid gap-14 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div className="grid gap-14 lg:grid-cols-[1.3fr_0.8fr_1fr_1fr_0.9fr_1fr]">
           <div>
             <div className="flex items-center gap-3 mb-6">
               <Image src="/images/logo-icon.png" alt="Fortress Group" width={44} height={44} className="h-10 w-auto" />
@@ -18,16 +18,23 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-sm leading-relaxed text-mist max-w-md">{company.about}</p>
-            <div className="mt-8 flex flex-wrap gap-2">
-              {company.sisterConcerns.map((c) => (
-                <span key={c} className="rounded-full border hairline px-3 py-1 text-[11px] tracking-wider text-stone/70">{c}</span>
-              ))}
-            </div>
+          </div>
+          <div>
+            <p className="eyebrow mb-6">About</p>
+            <ul className="space-y-3 text-sm text-stone/80">
+              {ABOUT_LINKS.map((l) => <li key={l.href}><Link href={l.href} className="hover:text-gold transition-colors">{l.label}</Link></li>)}
+            </ul>
+          </div>
+          <div>
+            <p className="eyebrow mb-6">The group</p>
+            <ul className="space-y-3 text-sm text-stone/80">
+              {CONCERN_LINKS.map((l) => <li key={l.href}><Link href={l.href} className="hover:text-gold transition-colors">{l.label}</Link></li>)}
+            </ul>
           </div>
           <div>
             <p className="eyebrow mb-6">Explore</p>
             <ul className="space-y-3 text-sm text-stone/80">
-              {[["/projects", "All Projects"], ["/projects?status=sale-ongoing", "Sale Ongoing"], ["/projects?status=completed", "Completed"], ["/about", "About Us"], ["/team", "Leadership"], ["/news", "News & Events"], ["/contact", "Contact"]].map(([h, l]) => (
+              {[["/projects", "All Projects"], ["/projects?status=sale-ongoing", "Sale Ongoing"], ["/projects?status=completed", "Completed"], ["/news", "News & Events"], ["/contact", "Contact"]].map(([h, l]) => (
                 <li key={h}><Link href={h} className="hover:text-gold transition-colors">{l}</Link></li>
               ))}
             </ul>

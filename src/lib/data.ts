@@ -32,6 +32,8 @@ export interface Area { slug: string; name: string; image: string; count: number
 export interface Award { slug: string; title: string; image: string | null; description: string }
 export interface Concern { slug: string; title: string; image: string | null }
 export interface NewsItem { slug: string; title: string; image: string | null; date: string }
+export interface Value { t: string; d: string }
+export interface ConcernPage { slug: string; title: string; short: string; sector: string; image: string | null; hero: string; tagline: string; status: "active" | "coming-soon"; summary: string[] }
 
 export const company = site.company;
 export const projects = site.projects as Project[];
@@ -43,6 +45,22 @@ export const experts = [...(site.experts as Person[])].sort((a, b) => rank(a.rol
 export const awards = site.awards as Award[];
 export const concerns = site.concerns as Concern[];
 export const news = site.news as NewsItem[];
+export const values = site.values as Value[];
+export const concernPages = site.concernPages as ConcernPage[];
+export const getConcern = (slug: string) => concernPages.find((c) => c.slug === slug);
+
+export const ABOUT_LINKS = [
+  { href: "/about", label: "About Us" },
+  { href: "/about/story", label: "Our Story" },
+  { href: "/about/mission", label: "Mission, Vision & Values" },
+  { href: "/about/chairman", label: "Chairman's Message" },
+  { href: "/about/advisors", label: "Board of Advisors" },
+  { href: "/team", label: "Directors & Management" },
+  { href: "/about/departments", label: "Departments" },
+  { href: "/about/awards", label: "Awards & Recognition" },
+  { href: "/about/csr", label: "CSR" },
+];
+export const CONCERN_LINKS = concernPages.map((c) => ({ href: `/concerns/${c.slug}`, label: c.title }));
 
 export const STATUS_LABEL: Record<ProjectStatus, string> = {
   "sale-ongoing": "Sale Ongoing",

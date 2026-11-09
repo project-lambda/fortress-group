@@ -7,16 +7,10 @@ import Stats from "@/components/Stats";
 import Awards from "@/components/Awards";
 import CTA from "@/components/CTA";
 import Marquee from "@/components/Marquee";
-import { company, directors } from "@/lib/data";
+import { ABOUT_LINKS, company, directors, values } from "@/lib/data";
+import SubNav from "@/components/SubNav";
 
 export const metadata: Metadata = { title: "About" };
-
-const values = [
-  { t: "Integrity", d: "Transparency, honesty and trust are the principal assets behind every Fortress handover." },
-  { t: "Quality", d: "Top-tier construction and premium finishing, verified by ISO-certified management systems." },
-  { t: "Sustainability", d: "Energy-efficient design and eco-friendly construction that serves today without costing tomorrow." },
-  { t: "Relationships", d: "More than 500 families and counting — lasting relationships built one home at a time." },
-];
 
 export default function AboutPage() {
   const chairman = directors.find((d) => /Chairman/i.test(d.role))!;
@@ -25,6 +19,7 @@ export default function AboutPage() {
       <PageHeader eyebrow="About Fortress Group" title="Built on" accent="trust." image="/images/Light-House.jpg">
         {company.about}
       </PageHeader>
+      <SubNav links={ABOUT_LINKS} />
       <Marquee items={company.sisterConcerns} />
       <Stats />
 
@@ -53,9 +48,9 @@ export default function AboutPage() {
             <Reveal delay={0.1}><p className="eyebrow mb-4">Vision</p><p className="font-display text-2xl md:text-3xl leading-snug">{company.vision}</p></Reveal>
             <Reveal delay={0.2} className="relative aspect-[4/3] lg:aspect-auto rounded-sm overflow-hidden"><Image src="/images/Purbachal.jpg" alt="" fill sizes="33vw" className="object-cover" /></Reveal>
           </div>
-          <Reveal><p className="eyebrow mb-8">Values</p></Reveal>
+          <Reveal className="flex items-end justify-between gap-4 mb-8"><p className="eyebrow">Values</p><Link href="/about/mission" className="link-underline text-xs tracking-[0.3em] uppercase text-ink/70">All seven values</Link></Reveal>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((v, i) => (
+            {values.slice(0, 4).map((v, i) => (
               <Reveal key={v.t} delay={i * 0.08} className="border-t border-ink/15 pt-6">
                 <p className="font-display text-4xl text-gold mb-2">0{i + 1}</p>
                 <h3 className="font-display text-2xl mb-3">{v.t}</h3>
