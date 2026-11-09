@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Splash from "@/components/Splash";
 import FloatingContact from "@/components/FloatingContact";
+import ScrollToTop from "@/components/ScrollToTop";
 import { company } from "@/lib/data";
 
 const display = Cormorant_Garamond({
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="grain">
         <SmoothScroll>
           <Splash />
+          <ScrollToTop />
           <Navbar />
           <main>{children}</main>
           <Footer />
