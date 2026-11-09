@@ -25,7 +25,7 @@ export default function Hero({ slides }: { slides: Project[] }) {
           </motion.div>
         </motion.div>
       </AnimatePresence>
-      <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-ink/30" />
+      <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-ink/60" />
       <div className="absolute inset-0 bg-gradient-to-r from-ink/70 via-transparent to-transparent" />
 
       <motion.div style={{ opacity }} className="relative z-10 mx-auto flex h-full max-w-[1600px] flex-col justify-end px-5 md:px-10 pb-16 md:pb-24">

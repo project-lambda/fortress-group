@@ -34,25 +34,26 @@ export default function Navbar() {
 
   return (
     <>
-      <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-700 ${scrolled && !open ? "bg-ink/70 backdrop-blur-xl border-b hairline" : ""}`}>
+      <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-700 ${scrolled && !open ? "bg-ink/80 backdrop-blur-xl border-b hairline" : open ? "" : "bg-gradient-to-b from-black/85 via-black/50 to-transparent backdrop-blur-[2px]"}`}>
+        {!scrolled && !open && <div className="pointer-events-none absolute inset-x-0 top-full h-16 bg-gradient-to-b from-black/30 to-transparent" />}
         <div className="mx-auto flex max-w-[1600px] items-center justify-between px-5 md:px-10 h-20">
           <Link href="/" className="flex items-center gap-3 group">
             <Image src="/images/main-logo.png" alt="Fortress Group" width={44} height={36} className="h-9 w-auto" priority />
-            <span className="hidden sm:block font-display text-xl tracking-wide">Fortress <span className="text-gold">Group</span></span>
+            <span className="hidden sm:block font-display text-xl tracking-wide [text-shadow:0_1px_12px_rgba(0,0,0,.9)]">Fortress <span className="text-gold">Group</span></span>
           </Link>
-          <nav className="hidden lg:flex items-center gap-9 text-[13px] tracking-[0.18em] uppercase">
+          <nav className="hidden lg:flex items-center gap-9 text-[13px] tracking-[0.18em] uppercase [text-shadow:0_1px_12px_rgba(0,0,0,.9)]">
             {links.slice(1, 5).map((l) => (
               <Link key={l.href} href={l.href} className={`link-underline transition-colors ${pathname.startsWith(l.href) ? "text-gold" : "text-stone/80 hover:text-stone"}`}>{l.label}</Link>
             ))}
           </nav>
           <div className="flex items-center gap-3 md:gap-5">
-            <a href={`tel:${company.phone.replace(/\s/g, "")}`} className="hidden md:flex items-center gap-2 text-sm text-stone/80 hover:text-gold transition-colors">
+            <a href={`tel:${company.phone.replace(/\s/g, "")}`} className="hidden md:flex items-center gap-2 text-sm text-stone/90 hover:text-gold transition-colors [text-shadow:0_1px_12px_rgba(0,0,0,.9)]">
               <Phone size={14} /> {company.phone}
             </a>
-            <Link href="/contact" className="hidden md:inline-flex items-center gap-2 rounded-full border border-gold/60 px-5 py-2 text-xs tracking-[0.2em] uppercase text-gold hover:bg-gold hover:text-ink transition-all duration-500">
+            <Link href="/contact" className="hidden md:inline-flex items-center gap-2 rounded-full border border-gold/70 bg-ink/40 backdrop-blur px-5 py-2 text-xs tracking-[0.2em] uppercase text-gold-2 hover:bg-gold hover:text-ink transition-all duration-500">
               Book a visit
             </Link>
-            <button aria-label="Menu" onClick={() => setOpen((v) => !v)} className="group relative h-11 w-11 rounded-full border hairline flex flex-col items-center justify-center gap-1.5 hover:border-gold/60 transition-colors">
+            <button aria-label="Menu" onClick={() => setOpen((v) => !v)} className="group relative h-11 w-11 rounded-full border border-white/25 bg-ink/40 backdrop-blur flex flex-col items-center justify-center gap-1.5 hover:border-gold/60 transition-colors">
               <motion.span animate={open ? { rotate: 45, y: 4 } : { rotate: 0, y: 0 }} className="block h-px w-5 bg-stone" />
               <motion.span animate={open ? { rotate: -45, y: -4 } : { rotate: 0, y: 0 }} className="block h-px w-5 bg-stone" />
             </button>
