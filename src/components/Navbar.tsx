@@ -69,7 +69,7 @@ export default function Navbar() {
             transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
             className="fixed inset-0 z-40 bg-ink-2 overflow-hidden"
           >
-            <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_top_right,_rgba(201,162,77,0.5),transparent_60%)]" />
+            <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_top_right,_rgba(31,154,122,0.5),transparent_60%)]" />
             <div className="relative mx-auto max-w-[1600px] px-5 md:px-10 pt-32 pb-12 h-full grid lg:grid-cols-[1.2fr_1fr] gap-12 overflow-y-auto">
               <ul className="space-y-2">
                 {links.map((l, i) => (

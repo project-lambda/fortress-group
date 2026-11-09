@@ -62,10 +62,10 @@ export default function Splash() {
                 <motion.path d={TOWER.outline} stroke="#e9e4dc" strokeWidth="1.4" {...stroke} {...draw(0.3, 1.8)} />
                 <motion.path d={TOWER.core} stroke="rgba(233,228,220,.4)" strokeWidth="1" {...stroke} {...draw(0.6, 1.4)} />
                 <motion.path d={TOWER.floors} stroke="rgba(233,228,220,.5)" strokeWidth="0.8" {...stroke} {...draw(0.9, 1.5)} />
-                <motion.path d={TOWER.windows} stroke="rgba(201,162,77,.9)" strokeWidth="1.2" {...stroke} {...draw(1.3, 1.3)} />
+                <motion.path d={TOWER.windows} stroke="rgba(31,154,122,.9)" strokeWidth="1.2" {...stroke} {...draw(1.3, 1.3)} />
                 <motion.path d={TOWER.balconies} stroke="#e9e4dc" strokeWidth="1" {...stroke} {...draw(1.5, 1.2)} />
-                <motion.path d={TOWER.crown} stroke="#c9a24d" strokeWidth="1.4" {...stroke} {...draw(2.1, 0.8)} />
-                <motion.circle cx="120" cy="52" r="3" fill="#e3c67a" initial={{ scale: 0, opacity: 0 }} animate={{ scale: [0, 1.6, 1], opacity: 1 }} transition={{ delay: 2.8, duration: 0.5 }} />
+                <motion.path d={TOWER.crown} stroke="#1f9a7a" strokeWidth="1.4" {...stroke} {...draw(2.1, 0.8)} />
+                <motion.circle cx="120" cy="52" r="3" fill="#38b080" initial={{ scale: 0, opacity: 0 }} animate={{ scale: [0, 1.6, 1], opacity: 1 }} transition={{ delay: 2.8, duration: 0.5 }} />
               </motion.svg>
             </div>
           </motion.div>

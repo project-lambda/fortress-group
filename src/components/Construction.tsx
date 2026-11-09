@@ -23,7 +23,7 @@ function Facade({ w, h, base, lit, glass }: { w: number; h: number; base: string
   return (
     <div className="absolute inset-0" style={{ width: w, height: h, background: base, borderBottom: "1px solid rgba(0,0,0,.18)" }}>
       <div className="absolute inset-0" style={WINDOWS(glass)} />
-      <motion.div className="absolute inset-0" style={{ opacity: lit, ...WINDOWS("rgba(255,214,120,.95)"), filter: "drop-shadow(0 0 6px rgba(255,200,90,.9))" }} />
+      <motion.div className="absolute inset-0" style={{ opacity: lit, ...WINDOWS("rgba(190,255,225,.95)"), filter: "drop-shadow(0 0 6px rgba(120,230,180,.9))" }} />
     </div>
   );
 }
@@ -73,8 +73,8 @@ export default function Construction({ structure, title, eyebrow = "How a Fortre
   return (
     <section ref={ref} className="relative h-[320vh] bg-ink-2">
       <div className="sticky top-0 h-screen overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_60%,rgba(201,162,77,0.08),transparent_60%)]" />
-        <motion.div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_50%,rgba(227,198,122,0.35),transparent_55%)]" style={{ opacity: glow }} />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_60%,rgba(31,154,122,0.08),transparent_60%)]" />
+        <motion.div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_50%,rgba(56,176,128,0.35),transparent_55%)]" style={{ opacity: glow }} />
         <div className="relative mx-auto grid h-full max-w-[1600px] grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] items-center px-5 md:px-10 gap-8">
           <div className="pt-24 lg:pt-0 z-10">
             <Reveal><p className="eyebrow mb-6">{eyebrow}</p></Reveal>
@@ -97,13 +97,13 @@ export default function Construction({ structure, title, eyebrow = "How a Fortre
           <div className="relative h-[55vh] lg:h-full scale-[0.55] sm:scale-75 lg:scale-100 origin-center" style={{ perspective: 2400 }}>
             <motion.div className="absolute inset-0" style={{ transformStyle: "preserve-3d", rotateX: rotX, rotateY: rotY, y: lift }}>
               {/* ground: a flat plate lying at level 0 */}
-              <motion.div className="absolute left-1/2 top-1/2" style={{ width: W * 2.2, height: D * 2.2, x: -W * 1.1, y: -D * 1.1, rotateX: 90, scale: slab, opacity: slabOp, marginTop: H / 2, background: "radial-gradient(ellipse at center, rgba(201,162,77,.16), rgba(20,23,28,0) 68%)", outline: "1px solid rgba(201,162,77,.28)", outlineOffset: -36 }} />
+              <motion.div className="absolute left-1/2 top-1/2" style={{ width: W * 2.2, height: D * 2.2, x: -W * 1.1, y: -D * 1.1, rotateX: 90, scale: slab, opacity: slabOp, marginTop: H / 2, background: "radial-gradient(ellipse at center, rgba(31,154,122,.16), rgba(20,23,28,0) 68%)", outline: "1px solid rgba(31,154,122,.28)", outlineOffset: -36 }} />
               {/* lift core rises ahead of the floors */}
-              <motion.div className="absolute left-1/2 top-1/2" style={{ width: 26, height: n * H, x: -13, y: -n * H + H / 2, z: -10, scaleY: core, transformOrigin: "bottom", background: "linear-gradient(180deg, rgba(201,162,77,.95), rgba(201,162,77,.3))", boxShadow: "0 0 24px rgba(201,162,77,.25)" }} />
+              <motion.div className="absolute left-1/2 top-1/2" style={{ width: 26, height: n * H, x: -13, y: -n * H + H / 2, z: -10, scaleY: core, transformOrigin: "bottom", background: "linear-gradient(180deg, rgba(31,154,122,.95), rgba(31,154,122,.3))", boxShadow: "0 0 24px rgba(31,154,122,.25)" }} />
               {Array.from({ length: basements }).map((_, i) => <Floor key={`b${i}`} i={i} n={basements} progress={progress} lit={lit} below />)}
               {Array.from({ length: n }).map((_, i) => <Floor key={i} i={i} n={n} progress={progress} lit={lit} />)}
               {/* rooftop crown */}
-              <motion.div className="absolute left-1/2 top-1/2" style={{ width: W * 0.55, height: D * 0.55, x: -W * 0.275, y: crownDrop, opacity: crown, marginTop: -(n - 1) * H - H / 2 - (D * 0.55) / 2 - 6, rotateX: 90, background: "linear-gradient(135deg,#e3c67a,#c9a24d)", boxShadow: "0 0 50px rgba(227,198,122,.7)" }} />
+              <motion.div className="absolute left-1/2 top-1/2" style={{ width: W * 0.55, height: D * 0.55, x: -W * 0.275, y: crownDrop, opacity: crown, marginTop: -(n - 1) * H - H / 2 - (D * 0.55) / 2 - 6, rotateX: 90, background: "linear-gradient(135deg,#38b080,#1f9a7a)", boxShadow: "0 0 50px rgba(56,176,128,.7)" }} />
             </motion.div>
           </div>
         </div>
