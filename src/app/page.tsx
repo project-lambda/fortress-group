@@ -11,6 +11,7 @@ import CTA from "@/components/CTA";
 import Construction from "@/components/Construction";
 import ProjectsMap from "@/components/map/ProjectsMap";
 import ChapterNav from "@/components/ChapterNav";
+import Film from "@/components/Film";
 import { Reveal } from "@/components/Reveal";
 import Link from "next/link";
 import { projects } from "@/lib/data";
@@ -19,6 +20,7 @@ import { areas, completedProjects, featuredProjects, ongoingProjects } from "@/l
 const CHAPTERS = [
   { id: "projects", label: "Sale ongoing" },
   { id: "about", label: "About us" },
+  { id: "film", label: "The film" },
   { id: "build", label: "How we build" },
   { id: "areas", label: "Locations" },
   { id: "map", label: "Project map" },
@@ -43,6 +45,7 @@ export default function Home() {
         </div>
       </div>
       <div id="about"><AboutTeaser /></div>
+      <div id="film"><Film /></div>
       <div id="build"><Construction towers={2} eyebrow="Fortress Green Touch · Shawdesh Sornali" title={<>Two towers rising by the <em className="text-gold">lake</em></>} structure={{ basements: 2, ground: true, mezzanine: true, floors: 16, raw: "B2+B1+G+M+16", code: "B2+B1+G+M+16" }} /></div>
       <div id="areas"><AreasGrid areas={areas} /></div>
       <section id="map" className="mx-auto max-w-[1600px] px-5 md:px-10 py-24">
