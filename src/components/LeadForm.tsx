@@ -32,7 +32,7 @@ export default function LeadForm({
     e.preventDefault();
     setStatus("sending"); setError("");
     try {
-      const res = await fetch("/api/lead", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...form, source }) });
+      const res = await fetch(`${process.env.NEXT_PUBLIC_LEAD_API ?? ""}/api/lead`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...form, source }) });
       const data = await res.json();
       if (!res.ok || !data.ok) throw new Error(data.error ?? "Something went wrong");
       setDelivered(Boolean(data.delivered));
