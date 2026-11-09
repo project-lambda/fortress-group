@@ -23,6 +23,7 @@ export default function Splash() {
   const [done, setDone] = useState(false);
   const [count, setCount] = useState(0);
   useEffect(() => {
+    if (window.location.search.includes("nosplash") || window.matchMedia("(prefers-reduced-motion: reduce)").matches) { const t = setTimeout(() => setDone(true), 0); return () => clearTimeout(t); }
     const t0 = performance.now(); const DUR = 3000;
     let raf = 0;
     const tick = (t: number) => {

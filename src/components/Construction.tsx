@@ -31,15 +31,16 @@ export default function Construction({ structure, title, eyebrow = "How a Fortre
     <section ref={ref} className="relative h-[380vh] bg-black">
       <div className="sticky top-0 h-screen overflow-hidden">
         <motion.div className="absolute inset-0 bg-[radial-gradient(ellipse_at_65%_55%,rgba(56,176,128,0.35),transparent_55%)]" style={{ opacity: glow }} />
-        <div className="absolute inset-y-0 right-0 left-0 lg:left-[18%]">
+        <div className="absolute inset-x-0 top-0 h-[55%] lg:inset-0 lg:h-auto lg:left-[18%]">
           <WireScene progress={progress} params={params} />
         </div>
-        <div className="absolute inset-y-0 left-0 w-full md:w-[55%] bg-gradient-to-r from-black via-black/70 to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-black via-black/85 to-transparent lg:hidden pointer-events-none" />
+        <div className="absolute inset-y-0 left-0 w-[55%] bg-gradient-to-r from-black via-black/70 to-transparent hidden lg:block pointer-events-none" />
         <div className="relative mx-auto h-full max-w-[1600px] px-5 md:px-10 pointer-events-none">
-          <div className="absolute left-5 md:left-10 bottom-10 md:bottom-auto md:top-1/2 md:-translate-y-1/2 max-w-md pointer-events-auto">
+          <div className="absolute left-5 right-20 md:right-auto md:left-10 bottom-8 lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 max-w-md pointer-events-auto">
             <Reveal><p className="eyebrow mb-6">{eyebrow}</p></Reveal>
-            <h2 className="font-display text-4xl md:text-6xl font-light leading-[1]">{title ?? <>From the first pile to the <em className="text-gold">rooftop</em></>}</h2>
-            <div className="mt-8 relative h-32">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-6xl font-light leading-[1]">{title ?? <>From the first pile to the <em className="text-gold">rooftop</em></>}</h2>
+            <div className="mt-6 md:mt-8 relative h-28 md:h-32">
               {STAGES.map((s, i) => (
                 <motion.div key={s.title} className="absolute inset-0" initial={false} animate={{ opacity: stage === i ? 1 : 0, y: stage === i ? 0 : stage > i ? -16 : 16 }} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}>
                   <p className="text-xs tracking-[0.3em] uppercase text-gold mb-3">Stage 0{i + 1} — {s.title}</p>
@@ -51,7 +52,7 @@ export default function Construction({ structure, title, eyebrow = "How a Fortre
               <div className="h-px flex-1 bg-white/10 relative overflow-hidden"><motion.div className="absolute inset-y-0 left-0 right-0 bg-gold" style={{ scaleX: progress, transformOrigin: "left" }} /></div>
               <motion.span className="font-display text-3xl tabular-nums text-stone/80 w-16 text-right">{pct}</motion.span>
             </div>
-            {structure && <p className="mt-4 text-[11px] tracking-[0.25em] uppercase text-mist">{structure.code} · {n} floors{basements ? ` · ${basements} basement${basements > 1 ? "s" : ""}` : ""}{params.towers === 2 ? " · 2 towers" : ""}</p>}
+            {structure && <p className="mt-4 hidden md:block text-[11px] tracking-[0.25em] uppercase text-mist">{structure.code} · {n} floors{basements ? ` · ${basements} basement${basements > 1 ? "s" : ""}` : ""}{params.towers === 2 ? " · 2 towers" : ""}</p>}
           </div>
         </div>
       </div>

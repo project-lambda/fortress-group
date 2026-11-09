@@ -39,7 +39,9 @@ function FlyTo({ target }: { target: { center: [number, number]; zoom: number; k
 }
 
 export default function ProjectsMapInner({ projects, areas, compact = false }: { projects: Project[]; areas: Area[]; compact?: boolean }) {
-  const [zoom, setZoom] = useState(12);
+  const isNarrow = typeof window !== "undefined" && window.innerWidth < 640;
+  const initialZoom = isNarrow ? 11 : 12;
+  const [zoom, setZoom] = useState(initialZoom);
   const [status, setStatus] = useState<ProjectStatus | "all">("all");
   const [area, setArea] = useState<string>("all");
   const [hover, setHover] = useState<string | null>(null);
@@ -58,7 +60,7 @@ export default function ProjectsMapInner({ projects, areas, compact = false }: {
 
   return (
     <div className={`relative w-full ${compact ? "h-[60vh]" : "h-[78vh]"} min-h-[480px] overflow-hidden rounded-sm border hairline bg-ink-2`}>
-      <MapContainer center={DHAKA} zoom={12} minZoom={10} maxZoom={17} scrollWheelZoom={false} zoomControl={false} className="h-full w-full" style={{ background: "#0b0d10" }}>
+      <MapContainer center={DHAKA} zoom={initialZoom} minZoom={10} maxZoom={17} scrollWheelZoom={false} zoomControl={false} className="h-full w-full" style={{ background: "#0b0d10" }}>
         <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' url="https://tile.openstreetmap.org/{z}/{x}/{y}.png" />
         <ZoomWatcher onZoom={setZoom} />
         <FlyTo target={fly} />
@@ -81,20 +83,20 @@ export default function ProjectsMapInner({ projects, areas, compact = false }: {
         ))}
       </MapContainer>
 
-      <div className="absolute left-4 right-4 bottom-4 md:left-6 md:bottom-6 md:right-auto z-[500] flex flex-col sm:flex-row gap-2 sm:gap-0 rounded-sm bg-ink/85 backdrop-blur-xl border hairline divide-y sm:divide-y-0 sm:divide-x divide-white/10">
-        <select value={area} onChange={(e) => { const v = e.target.value; setArea(v); const c = clusters.find((x) => x.area === v); if (c) setFly({ center: [c.lat, c.lng], zoom: 14.5, key: Date.now() }); else setFly({ center: DHAKA, zoom: 12, key: Date.now() }); }} className="bg-transparent px-5 py-3.5 text-sm text-stone outline-none min-w-[180px]">
+      <div className="absolute left-3 right-16 bottom-3 md:left-6 md:bottom-6 md:right-auto z-[500] flex flex-row rounded-sm bg-ink/85 backdrop-blur-xl border hairline divide-x divide-white/10 text-xs md:text-sm">
+        <select value={area} onChange={(e) => { const v = e.target.value; setArea(v); const c = clusters.find((x) => x.area === v); if (c) setFly({ center: [c.lat, c.lng], zoom: 14.5, key: Date.now() }); else setFly({ center: DHAKA, zoom: initialZoom, key: Date.now() }); }} className="bg-transparent px-3 md:px-5 py-3 md:py-3.5 text-stone outline-none min-w-0 flex-1 md:min-w-[180px]">
           <option value="all" className="bg-ink">All locations</option>
           {areas.map((a) => <option key={a.slug} value={a.name} className="bg-ink">{a.name} ({a.count})</option>)}
         </select>
-        <select value={status} onChange={(e) => setStatus(e.target.value as ProjectStatus | "all")} className="bg-transparent px-5 py-3.5 text-sm text-stone outline-none min-w-[160px]">
+        <select value={status} onChange={(e) => setStatus(e.target.value as ProjectStatus | "all")} className="bg-transparent px-3 md:px-5 py-3 md:py-3.5 text-stone outline-none min-w-0 flex-1 md:min-w-[160px]">
           <option value="all" className="bg-ink">Project status</option>
           {(Object.keys(STATUS_LABEL) as ProjectStatus[]).map((s) => <option key={s} value={s} className="bg-ink">{STATUS_LABEL[s]}</option>)}
         </select>
-        <div className="px-5 py-3.5 text-xs tracking-[0.2em] uppercase text-mist flex items-center">{list.length} projects</div>
+        <div className="hidden md:flex px-5 py-3.5 text-xs tracking-[0.2em] uppercase text-mist items-center">{list.length} projects</div>
       </div>
 
-      <div className="absolute right-4 bottom-4 md:right-6 md:bottom-6 z-[500]">
-        <button onClick={() => setFly({ center: DHAKA, zoom: 12, key: Date.now() })} aria-label="Reset view" className={`grid h-11 w-11 place-items-center rounded-full bg-ink/85 backdrop-blur border hairline text-stone hover:text-gold transition-colors ${showPins ? "" : "opacity-60"}`}>
+      <div className="absolute right-3 bottom-3 md:right-6 md:bottom-6 z-[500]">
+        <button onClick={() => setFly({ center: DHAKA, zoom: initialZoom, key: Date.now() })} aria-label="Reset view" className={`grid h-11 w-11 place-items-center rounded-full bg-ink/85 backdrop-blur border hairline text-stone hover:text-gold transition-colors ${showPins ? "" : "opacity-60"}`}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 3v4M12 17v4M3 12h4M17 12h4" /><circle cx="12" cy="12" r="3" /></svg>
         </button>
       </div>
