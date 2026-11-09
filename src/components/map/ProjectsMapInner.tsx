@@ -6,6 +6,7 @@ import L from "leaflet";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import Select from "../Select";
 import { STATUS_LABEL, type Area, type Project, type ProjectStatus } from "@/lib/data";
 
 const DHAKA: [number, number] = [23.822, 90.455];
@@ -84,14 +85,14 @@ export default function ProjectsMapInner({ projects, areas, compact = false }: {
       </MapContainer>
 
       <div className="absolute left-3 right-16 bottom-3 md:left-6 md:bottom-6 md:right-auto z-[500] flex flex-row rounded-sm bg-ink/85 backdrop-blur-xl border hairline divide-x divide-white/10 text-xs md:text-sm">
-        <select value={area} onChange={(e) => { const v = e.target.value; setArea(v); const c = clusters.find((x) => x.area === v); if (c) setFly({ center: [c.lat, c.lng], zoom: 14.5, key: Date.now() }); else setFly({ center: DHAKA, zoom: initialZoom, key: Date.now() }); }} className="bg-transparent px-3 md:px-5 py-3 md:py-3.5 text-stone outline-none min-w-0 flex-1 md:min-w-[180px]">
-          <option value="all" className="bg-ink">All locations</option>
-          {areas.map((a) => <option key={a.slug} value={a.name} className="bg-ink">{a.name} ({a.count})</option>)}
-        </select>
-        <select value={status} onChange={(e) => setStatus(e.target.value as ProjectStatus | "all")} className="bg-transparent px-3 md:px-5 py-3 md:py-3.5 text-stone outline-none min-w-0 flex-1 md:min-w-[160px]">
-          <option value="all" className="bg-ink">Project status</option>
-          {(Object.keys(STATUS_LABEL) as ProjectStatus[]).map((s) => <option key={s} value={s} className="bg-ink">{STATUS_LABEL[s]}</option>)}
-        </select>
+        <Select value={area} onChange={(e) => { const v = e.target.value; setArea(v); const c = clusters.find((x) => x.area === v); if (c) setFly({ center: [c.lat, c.lng], zoom: 14.5, key: Date.now() }); else setFly({ center: DHAKA, zoom: initialZoom, key: Date.now() }); }} wrapClassName="min-w-0 flex-1 md:min-w-[190px]" className="px-3 md:px-5 py-3 md:py-3.5">
+          <option value="all">All locations</option>
+          {areas.map((a) => <option key={a.slug} value={a.name}>{a.name} ({a.count})</option>)}
+        </Select>
+        <Select value={status} onChange={(e) => setStatus(e.target.value as ProjectStatus | "all")} wrapClassName="min-w-0 flex-1 md:min-w-[170px]" className="px-3 md:px-5 py-3 md:py-3.5">
+          <option value="all">Project status</option>
+          {(Object.keys(STATUS_LABEL) as ProjectStatus[]).map((s) => <option key={s} value={s}>{STATUS_LABEL[s]}</option>)}
+        </Select>
         <div className="hidden md:flex px-5 py-3.5 text-xs tracking-[0.2em] uppercase text-mist items-center">{list.length} projects</div>
       </div>
 

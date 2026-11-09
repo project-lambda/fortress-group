@@ -3,6 +3,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ArrowUpRight, Loader2, MessageCircle } from "lucide-react";
 import { whatsappUrl } from "@/lib/lead";
+import Select from "./Select";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -60,10 +61,10 @@ export default function LeadForm({
           <input required value={form.phone} onChange={set("phone")} type="tel" placeholder="Phone number" autoComplete="tel" className={input} />
           {!compact && <input value={form.email} onChange={set("email")} type="email" placeholder="Email (optional)" autoComplete="email" className={`${input} sm:col-span-2`} />}
           {projects && (
-            <select value={form.project} onChange={set("project")} className={`${input} sm:col-span-2 text-stone/80`}>
+            <Select value={form.project} onChange={set("project")} wrapClassName="sm:col-span-2 rounded-sm border hairline bg-ink focus-within:border-gold/60" className="px-4 py-3 text-sm text-stone/80">
               <option value="">Interested project (optional)</option>
               {projects.map((p) => <option key={p.slug} value={p.title}>{p.title}</option>)}
-            </select>
+            </Select>
           )}
           <textarea value={form.message} onChange={set("message")} placeholder={compact ? "Message (optional)" : "How can we help?"} rows={compact ? 3 : 4} className={`${input} ${compact ? "" : "sm:col-span-2"}`} />
           {status === "error" && <p className={`text-sm text-red-400 ${compact ? "" : "sm:col-span-2"}`}>{error}</p>}

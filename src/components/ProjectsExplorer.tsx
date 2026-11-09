@@ -7,6 +7,7 @@ import ProjectCard from "./ProjectCard";
 import { STATUS_LABEL, type Area, type Project, type ProjectStatus } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
+import Select from "./Select";
 
 const STATUSES: (ProjectStatus | "all")[] = ["all", "sale-ongoing", "ongoing", "completed", "upcoming"];
 
@@ -44,10 +45,10 @@ export default function ProjectsExplorer({ projects, areas }: { projects: Projec
               ))}
             </div>
           </LayoutGroup>
-          <select value={area} onChange={(e) => set("area", e.target.value)} className="rounded-full border hairline bg-ink-2 px-4 py-2 text-xs tracking-wider text-stone outline-none focus:border-gold/60">
+          <Select value={area} onChange={(e) => set("area", e.target.value)} wrapClassName="rounded-full border hairline bg-ink-2 focus-within:border-gold/60" className="px-4 py-2 text-xs tracking-wider">
             <option value="all">All locations</option>
             {areas.map((a) => <option key={a.slug} value={a.slug}>{a.name} ({a.count})</option>)}
-          </select>
+          </Select>
           <label className="flex items-center gap-2 rounded-full border hairline bg-ink-2 px-4 py-2 text-xs lg:ml-auto">
             <Search size={14} className="text-mist" />
             <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search projects" className="bg-transparent outline-none placeholder:text-mist w-40" />
