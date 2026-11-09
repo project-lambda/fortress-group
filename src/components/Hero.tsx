@@ -17,7 +17,7 @@ export default function Hero({ slides }: { slides: Project[] }) {
   }, [slides.length]);
   const s = slides[i];
   return (
-    <section className="relative h-[100svh] min-h-[640px] overflow-hidden">
+    <section className="theme-dark relative h-[100svh] min-h-[640px] overflow-hidden">
       <AnimatePresence mode="sync">
         <motion.div key={s.slug} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1.6, ease: "easeInOut" }}>
           <motion.div style={{ y }} className="absolute inset-0">
@@ -67,7 +67,7 @@ export default function Hero({ slides }: { slides: Project[] }) {
 
         <div className="mt-10 flex items-center gap-3">
           {slides.map((x, k) => (
-            <button key={x.slug} aria-label={x.name} onClick={() => setI(k)} className="h-px flex-1 max-w-16 bg-white/20 relative overflow-hidden">
+            <button key={x.slug} aria-label={x.name} onClick={() => setI(k)} className="h-px flex-1 max-w-16 bg-fg/20 relative overflow-hidden">
               {k === i && <motion.span key={i} className="absolute inset-y-0 left-0 bg-gold" initial={{ width: 0 }} animate={{ width: "100%" }} transition={{ duration: 6.5, ease: "linear" }} />}
             </button>
           ))}

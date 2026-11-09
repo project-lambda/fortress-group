@@ -12,7 +12,7 @@ export default function FeaturedScroller({ items }: { items: Project[] }) {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
   const x = useTransform(scrollYProgress, [0, 1], ["0%", "-72%"]);
   return (
-    <section ref={ref} className="relative h-[320vh] hidden lg:block">
+    <section ref={ref} className="theme-dark relative h-[320vh] hidden lg:block bg-ink">
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
         <div className="mx-auto w-full max-w-[1600px] px-10 mb-10 flex items-end justify-between">
           <Reveal>

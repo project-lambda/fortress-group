@@ -24,7 +24,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable}`}>
+    <html lang="en" className={`${display.variable} ${sans.variable}`} suppressHydrationWarning>
+      <head>
+        {/* apply a saved light theme before first paint; dark is the default */}
+        <script dangerouslySetInnerHTML={{ __html: "try{if(localStorage.getItem('fg:theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}" }} />
+      </head>
       <body className="grain">
         <SmoothScroll>
           <Splash />

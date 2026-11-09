@@ -71,7 +71,7 @@ export default function ShortlistView({ projects }: { projects: Project[] }) {
           </thead>
           <tbody>
             {specs.map((s, i) => (
-              <tr key={s.label} className={i % 2 ? "" : "bg-white/[0.025]"}>
+              <tr key={s.label} className={i % 2 ? "" : "bg-fg/[0.025]"}>
                 <th className="sticky left-0 z-10 bg-ink text-left py-4 pr-4 text-[10px] tracking-[0.25em] uppercase text-mist font-normal border-t hairline">{s.label}</th>
                 {rows.map((r) => <td key={r.p.slug} className="py-4 px-3 text-sm text-stone/85 border-t hairline">{s.get(r)}</td>)}
               </tr>

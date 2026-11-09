@@ -25,7 +25,7 @@ export default function ConcernsPage() {
                 <Image src={c.hero} alt="" fill sizes="33vw" className="object-cover opacity-40 transition-all duration-1000 group-hover:opacity-60 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" />
                 <span className={`absolute left-5 top-5 rounded-full px-3 py-1 text-[10px] tracking-[0.25em] uppercase ${c.status === "active" ? "bg-gold text-ink" : "border hairline bg-ink/50 text-stone/80"}`}>{c.status === "active" ? "Active" : "Profile soon"}</span>
-                <span className="absolute right-5 top-5 grid h-10 w-10 place-items-center rounded-full border border-white/30 text-stone opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500"><ArrowUpRight size={16} /></span>
+                <span className="absolute right-5 top-5 grid h-10 w-10 place-items-center rounded-full border border-fg/30 text-stone opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500"><ArrowUpRight size={16} /></span>
                 <div className="absolute inset-x-0 bottom-0 p-7">
                   {c.image ? <div className="relative h-14 w-40 mb-5 rounded-sm bg-stone p-2"><Image src={c.image} alt={c.title} fill sizes="160px" className="object-contain p-2" /></div> : <p className="font-display text-5xl text-gold/70 mb-4">0{i + 1}</p>}
                   <p className="eyebrow mb-2">{c.sector}</p>

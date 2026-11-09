@@ -61,7 +61,7 @@ export default function ProjectsMapInner({ projects, areas, compact = false }: {
 
   return (
     <div className={`relative w-full ${compact ? "h-[60vh]" : "h-[78vh]"} min-h-[480px] overflow-hidden rounded-sm border hairline bg-ink-2`}>
-      <MapContainer center={DHAKA} zoom={initialZoom} minZoom={10} maxZoom={17} scrollWheelZoom={false} zoomControl={false} className="h-full w-full" style={{ background: "#0b0d10" }}>
+      <MapContainer center={DHAKA} zoom={initialZoom} minZoom={10} maxZoom={17} scrollWheelZoom={false} zoomControl={false} className="h-full w-full" style={{ background: "var(--color-ink)" }}>
         <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' url="https://tile.openstreetmap.org/{z}/{x}/{y}.png" />
         <ZoomWatcher onZoom={setZoom} />
         <FlyTo target={fly} />
@@ -84,7 +84,7 @@ export default function ProjectsMapInner({ projects, areas, compact = false }: {
         ))}
       </MapContainer>
 
-      <div className="absolute left-3 right-16 bottom-3 md:left-6 md:bottom-6 md:right-auto z-[500] flex flex-row rounded-sm bg-ink/85 backdrop-blur-xl border hairline divide-x divide-white/10 text-xs md:text-sm">
+      <div className="absolute left-3 right-16 bottom-3 md:left-6 md:bottom-6 md:right-auto z-[500] flex flex-row rounded-sm bg-ink/85 backdrop-blur-xl border hairline divide-x divide-fg/10 text-xs md:text-sm">
         <Select value={area} onChange={(e) => { const v = e.target.value; setArea(v); const c = clusters.find((x) => x.area === v); if (c) setFly({ center: [c.lat, c.lng], zoom: 14.5, key: Date.now() }); else setFly({ center: DHAKA, zoom: initialZoom, key: Date.now() }); }} wrapClassName="min-w-0 flex-1 md:min-w-[190px]" className="px-3 md:px-5 py-3 md:py-3.5">
           <option value="all">All locations</option>
           {areas.map((a) => <option key={a.slug} value={a.name}>{a.name} ({a.count})</option>)}

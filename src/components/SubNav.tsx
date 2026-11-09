@@ -11,7 +11,7 @@ export default function SubNav({ links }: { links: { href: string; label: string
           const on = pathname === l.href;
           return (
             <li key={l.href} className="shrink-0">
-              <Link href={l.href} className={`block whitespace-nowrap rounded-full px-4 py-2 text-[11px] tracking-[0.2em] uppercase transition-colors ${on ? "bg-gold text-ink" : "text-stone/70 hover:text-stone hover:bg-white/5"}`}>{l.label}</Link>
+              <Link href={l.href} className={`block whitespace-nowrap rounded-full px-4 py-2 text-[11px] tracking-[0.2em] uppercase transition-colors ${on ? "bg-gold text-ink" : "text-stone/70 hover:text-stone hover:bg-fg/5"}`}>{l.label}</Link>
             </li>
           );
         })}

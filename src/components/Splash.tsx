@@ -40,7 +40,7 @@ export default function Splash() {
   return (
     <AnimatePresence>
       {!done && (
-        <motion.div key="splash" className="fixed inset-0 z-[100]" exit={{ opacity: 0, transition: { duration: 0.2, delay: 1 } }}>
+        <motion.div key="splash" className="theme-dark fixed inset-0 z-[100]" exit={{ opacity: 0, transition: { duration: 0.2, delay: 1 } }}>
           {/* two curtains that part on exit */}
           <motion.div className="absolute inset-x-0 top-0 h-1/2 bg-ink" exit={{ y: "-100%", transition: { duration: 1.1, ease: [0.76, 0, 0.24, 1] } }} />
           <motion.div className="absolute inset-x-0 bottom-0 h-1/2 bg-ink" exit={{ y: "100%", transition: { duration: 1.1, ease: [0.76, 0, 0.24, 1] } }} />
@@ -73,7 +73,7 @@ export default function Splash() {
 
           <motion.div className="absolute bottom-8 left-6 right-6 md:left-16 md:right-16 flex items-end justify-between" exit={{ opacity: 0 }}>
             <span className="font-display text-6xl md:text-7xl font-light tabular-nums text-stone/80 leading-none">{count}</span>
-            <div className="mx-8 mb-4 h-px flex-1 bg-white/10 relative overflow-hidden"><motion.div className="absolute inset-y-0 left-0 bg-gold" style={{ width: `${count}%` }} /></div>
+            <div className="mx-8 mb-4 h-px flex-1 bg-fg/10 relative overflow-hidden"><motion.div className="absolute inset-y-0 left-0 bg-gold" style={{ width: `${count}%` }} /></div>
             <span className="eyebrow mb-4 hidden sm:block">Since 2004 · ISO certified</span>
           </motion.div>
         </motion.div>

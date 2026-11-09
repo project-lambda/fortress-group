@@ -133,7 +133,7 @@ export default function ProjectsExplorer({ projects, areas }: { projects: Projec
           <AnimatePresence mode="popLayout">
             {list.map((p) => (
               <motion.li key={p.slug} layout initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                <Link href={`/projects/${p.slug}`} className="group grid grid-cols-[72px_1fr_auto] md:grid-cols-[96px_2fr_1fr_1fr_auto] items-center gap-6 py-5 hover:bg-white/[0.03] transition-colors px-2">
+                <Link href={`/projects/${p.slug}`} className="group grid grid-cols-[72px_1fr_auto] md:grid-cols-[96px_2fr_1fr_1fr_auto] items-center gap-6 py-5 hover:bg-fg/[0.03] transition-colors px-2">
                   <div className="relative h-20 w-full overflow-hidden rounded-sm">{p.image && <Image src={p.image} alt="" fill sizes="96px" className="object-cover group-hover:scale-110 transition-transform duration-700" />}</div>
                   <span className="font-display text-2xl group-hover:text-gold transition-colors">{p.name}</span>
                   <span className="hidden md:block text-sm text-stone/70">{p.area}</span>

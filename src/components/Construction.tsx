@@ -28,7 +28,7 @@ export default function Construction({ structure, title, eyebrow = "How a Fortre
   const glow = useTransform(progress, [0.88, 1], [0, 0.35]);
 
   return (
-    <section ref={ref} className="relative h-[380vh] bg-black">
+    <section ref={ref} className="theme-dark relative h-[380vh] bg-black">
       <div className="sticky top-0 h-screen overflow-hidden">
         <motion.div className="absolute inset-0 bg-[radial-gradient(ellipse_at_65%_55%,rgba(56,176,128,0.35),transparent_55%)]" style={{ opacity: glow }} />
         <div className="absolute inset-x-0 top-0 h-[55%] lg:inset-0 lg:h-auto lg:left-[18%]">
@@ -49,7 +49,7 @@ export default function Construction({ structure, title, eyebrow = "How a Fortre
               ))}
             </div>
             <div className="mt-4 flex items-center gap-4">
-              <div className="h-px flex-1 bg-white/10 relative overflow-hidden"><motion.div className="absolute inset-y-0 left-0 right-0 bg-gold" style={{ scaleX: progress, transformOrigin: "left" }} /></div>
+              <div className="h-px flex-1 bg-fg/10 relative overflow-hidden"><motion.div className="absolute inset-y-0 left-0 right-0 bg-gold" style={{ scaleX: progress, transformOrigin: "left" }} /></div>
               <motion.span className="font-display text-3xl tabular-nums text-stone/80 w-16 text-right">{pct}</motion.span>
             </div>
             {structure && <p className="mt-4 hidden md:block text-[11px] tracking-[0.25em] uppercase text-mist">{structure.code} · {n} floors{basements ? ` · ${basements} basement${basements > 1 ? "s" : ""}` : ""}{params.towers === 2 ? " · 2 towers" : ""}</p>}

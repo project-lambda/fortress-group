@@ -8,7 +8,7 @@ export default function ShortlistLink({ className = "" }: { className?: string }
   const { slugs } = useShortlist();
   const n = slugs.length;
   return (
-    <Link href="/shortlist" aria-label={`Shortlist, ${n} projects`} className={`relative grid h-11 w-11 place-items-center rounded-full border border-white/25 bg-ink/40 backdrop-blur text-stone hover:border-gold/60 hover:text-gold-2 transition-colors ${className}`}>
+    <Link href="/shortlist" aria-label={`Shortlist, ${n} projects`} className={`relative grid h-11 w-11 place-items-center rounded-full border border-fg/25 bg-ink/40 backdrop-blur text-stone hover:border-gold/60 hover:text-gold-2 transition-colors ${className}`}>
       <Heart size={16} className={n ? "fill-gold text-gold" : ""} />
       <AnimatePresence>
         {n > 0 && (

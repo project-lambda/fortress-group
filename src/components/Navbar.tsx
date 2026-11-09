@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { Phone, ArrowUpRight, ChevronDown } from "lucide-react";
 import { ABOUT_LINKS, CONCERN_LINKS, company, featuredProjects } from "@/lib/data";
 import ShortlistLink from "./ShortlistLink";
+import ThemeToggle from "./ThemeToggle";
 
 type NavLink = { href: string; label: string; children?: { href: string; label: string }[] };
 const links: NavLink[] = [
@@ -38,19 +39,21 @@ export default function Navbar() {
     document.documentElement.style.overflow = open ? "hidden" : "";
   }, [open]);
 
+  // Over full-bleed photography (home hero, project hero) the header keeps its dark styling in both themes.
+  const overPhoto = !scrolled && !open && (pathname === "/" || /^\/projects\/[^/]+$/.test(pathname));
   return (
     <>
-      <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-700 ${scrolled && !open ? "bg-ink/80 backdrop-blur-xl border-b hairline" : open ? "" : "bg-gradient-to-b from-black/85 via-black/50 to-transparent backdrop-blur-[2px]"}`}>
-        {!scrolled && !open && <div className="pointer-events-none absolute inset-x-0 top-full h-16 bg-gradient-to-b from-black/30 to-transparent" />}
+      <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-700 ${overPhoto ? "theme-dark" : ""} ${scrolled && !open ? "bg-ink/80 backdrop-blur-xl border-b hairline" : open ? "" : overPhoto ? "bg-gradient-to-b from-black/85 via-black/50 to-transparent backdrop-blur-[2px]" : "bg-gradient-to-b from-ink/90 via-ink/50 to-transparent backdrop-blur-[2px]"}`}>
+        {overPhoto && <div className="pointer-events-none absolute inset-x-0 top-full h-16 bg-gradient-to-b from-black/30 to-transparent" />}
         <div className="mx-auto flex max-w-[1600px] items-center justify-between px-5 md:px-10 h-20">
           <Link href="/" className="flex items-center gap-3 group">
             <Image src="/images/logo-icon.png" alt="Fortress Group" width={40} height={40} className="h-9 w-auto" priority />
-            <span className="flex flex-col leading-none [text-shadow:0_1px_12px_rgba(0,0,0,.9)]">
+            <span className="flex flex-col leading-none nav-glow">
               <span className="font-display text-xl tracking-wide">Fortress <span className="text-gold-2">Group</span></span>
               <span className="text-[8px] tracking-[0.32em] uppercase text-stone/60 mt-1">Build with care</span>
             </span>
           </Link>
-          <nav className="hidden lg:flex items-center gap-8 text-[13px] tracking-[0.18em] uppercase [text-shadow:0_1px_12px_rgba(0,0,0,.9)]" onMouseLeave={() => setMenu(null)}>
+          <nav className="hidden lg:flex items-center gap-8 text-[13px] tracking-[0.18em] uppercase nav-glow" onMouseLeave={() => setMenu(null)}>
             {desktop.map((l) => {
               const active = pathname.startsWith(l.href) || (l.href === "/about" && pathname.startsWith("/about"));
               return (
@@ -64,7 +67,7 @@ export default function Navbar() {
                         <ul className="min-w-72 rounded-sm border hairline bg-ink-2/95 backdrop-blur-xl p-3 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)] normal-case tracking-normal [text-shadow:none]">
                           {l.children.map((c) => (
                             <li key={c.href}>
-                              <Link href={c.href} className={`flex items-center justify-between gap-6 rounded-sm px-4 py-2.5 text-sm transition-colors ${pathname === c.href ? "bg-gold/10 text-gold-2" : "text-stone/85 hover:bg-white/5 hover:text-gold-2"}`}>
+                              <Link href={c.href} className={`flex items-center justify-between gap-6 rounded-sm px-4 py-2.5 text-sm transition-colors ${pathname === c.href ? "bg-gold/10 text-gold-2" : "text-stone/85 hover:bg-fg/5 hover:text-gold-2"}`}>
                                 {c.label}<ArrowUpRight size={12} className="opacity-0 -translate-x-1 group-hover:opacity-100 transition-all" />
                               </Link>
                             </li>
@@ -78,14 +81,15 @@ export default function Navbar() {
             })}
           </nav>
           <div className="flex items-center gap-3 md:gap-5">
-            <a href={`tel:${company.phone.replace(/\s/g, "")}`} className="hidden md:flex items-center gap-2 text-sm text-stone/90 hover:text-gold transition-colors [text-shadow:0_1px_12px_rgba(0,0,0,.9)]">
+            <a href={`tel:${company.phone.replace(/\s/g, "")}`} className="hidden md:flex items-center gap-2 text-sm text-stone/90 hover:text-gold transition-colors nav-glow">
               <Phone size={14} /> {company.phone}
             </a>
             <Link href="/contact" className="hidden md:inline-flex items-center gap-2 rounded-full border border-gold/70 bg-ink/40 backdrop-blur px-5 py-2 text-xs tracking-[0.2em] uppercase text-gold-2 hover:bg-gold hover:text-ink transition-all duration-500">
               Book a visit
             </Link>
+            <ThemeToggle className="hidden sm:grid" />
             <ShortlistLink />
-            <button aria-label="Menu" onClick={() => setOpen((v) => !v)} className="group relative h-11 w-11 rounded-full border border-white/25 bg-ink/40 backdrop-blur flex flex-col items-center justify-center gap-1.5 hover:border-gold/60 transition-colors">
+            <button aria-label="Menu" onClick={() => setOpen((v) => !v)} className="group relative h-11 w-11 rounded-full border border-fg/25 bg-ink/40 backdrop-blur flex flex-col items-center justify-center gap-1.5 hover:border-gold/60 transition-colors">
               <motion.span animate={open ? { rotate: 45, y: 4 } : { rotate: 0, y: 0 }} className="block h-px w-5 bg-stone" />
               <motion.span animate={open ? { rotate: -45, y: -4 } : { rotate: 0, y: 0 }} className="block h-px w-5 bg-stone" />
             </button>
@@ -135,6 +139,7 @@ export default function Navbar() {
                   </ul>
                 </div>
                 <div className="text-sm text-mist space-y-2">
+                  <div className="sm:hidden flex items-center gap-3 mb-4"><ThemeToggle /><span className="text-xs tracking-[0.2em] uppercase">Day / night</span></div>
                   <p>{company.address}</p>
                   <p className="text-stone">{company.phone} · {company.email}</p>
                   <div className="flex gap-5 pt-3">

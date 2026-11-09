@@ -95,44 +95,44 @@ export default function FloorSelector({ structure, facts, groups, size, towers, 
         <div tabIndex={0} onKeyDown={onKey} aria-label="Building elevation, use arrow keys to change floor" className="outline-none focus-visible:ring-1 focus-visible:ring-gold/60 rounded-sm">
           <svg viewBox={`0 0 ${W} ${total}`} className="w-full max-h-[78vh] select-none" style={{ aspectRatio: `${W}/${total}` }}>
             {/* ground line & sky */}
-            <line x1={8} x2={W - 8} y1={groundY} y2={groundY} stroke="rgba(233,228,220,0.5)" strokeWidth={1} />
-            <rect x={X0 - 12} y={groundY} width={X1 - X0 + 24} height={total - groundY - PAD / 2} fill="rgba(255,255,255,0.025)" />
+            <line x1={8} x2={W - 8} y1={groundY} y2={groundY} stroke="var(--color-stone)" strokeOpacity={0.5} strokeWidth={1} />
+            <rect x={X0 - 12} y={groundY} width={X1 - X0 + 24} height={total - groundY - PAD / 2} fill="var(--color-fg)" fillOpacity={0.025} />
             {rows.map((r, i) => {
               const on = i === active;
               const isBase = r.kind === "basement";
               return (
                 <g key={r.id} onMouseEnter={() => pick(i)} onClick={() => pick(i)} className="cursor-pointer">
-                  <rect x={X0} y={r.y} width={X1 - X0} height={r.h} fill={on ? "rgba(31,154,122,0.35)" : "transparent"} stroke={on ? "#38b080" : isBase ? "rgba(233,228,220,0.35)" : "rgba(233,228,220,0.25)"} strokeWidth={on ? 1.2 : 0.8} strokeDasharray={isBase ? "3 3" : undefined} />
+                  <rect x={X0} y={r.y} width={X1 - X0} height={r.h} fill="var(--color-gold)" fillOpacity={on ? 0.35 : 0} stroke={on ? "var(--color-gold-2)" : "var(--color-stone)"} strokeOpacity={on ? 1 : isBase ? 0.35 : 0.25} strokeWidth={on ? 1.2 : 0.8} strokeDasharray={isBase ? "3 3" : undefined} />
                   {/* windows / details */}
                   {r.kind === "floor" && Array.from({ length: 6 }).map((_, k) => (
-                    <rect key={k} x={X0 + 10 + k * 28} y={r.y + 4} width={16} height={r.h - 8} fill={on ? "rgba(233,228,220,0.9)" : "rgba(233,228,220,0.18)"} />
+                    <rect key={k} x={X0 + 10 + k * 28} y={r.y + 4} width={16} height={r.h - 8} fill="var(--color-stone)" fillOpacity={on ? 0.9 : 0.18} />
                   ))}
                   {r.kind === "mezz" && Array.from({ length: 3 }).map((_, k) => (
-                    <rect key={k} x={X0 + 14 + k * 56} y={r.y + 4} width={44} height={r.h - 8} fill={on ? "rgba(233,228,220,0.9)" : "rgba(233,228,220,0.14)"} />
+                    <rect key={k} x={X0 + 14 + k * 56} y={r.y + 4} width={44} height={r.h - 8} fill="var(--color-stone)" fillOpacity={on ? 0.9 : 0.14} />
                   ))}
                   {r.kind === "ground" && (<>
-                    <rect x={X0 + 70} y={r.y + 5} width={36} height={r.h - 5} fill={on ? "#e9e4dc" : "rgba(233,228,220,0.3)"} />
-                    <rect x={X0 + 12} y={r.y + 6} width={44} height={r.h - 12} fill={on ? "rgba(233,228,220,0.8)" : "rgba(233,228,220,0.14)"} />
-                    <rect x={X0 + 120} y={r.y + 6} width={44} height={r.h - 12} fill={on ? "rgba(233,228,220,0.8)" : "rgba(233,228,220,0.14)"} />
+                    <rect x={X0 + 70} y={r.y + 5} width={36} height={r.h - 5} fill="var(--color-stone)" fillOpacity={on ? 1 : 0.3} />
+                    <rect x={X0 + 12} y={r.y + 6} width={44} height={r.h - 12} fill="var(--color-stone)" fillOpacity={on ? 0.8 : 0.14} />
+                    <rect x={X0 + 120} y={r.y + 6} width={44} height={r.h - 12} fill="var(--color-stone)" fillOpacity={on ? 0.8 : 0.14} />
                   </>)}
                   {r.kind === "roof" && (<>
-                    <rect x={X0 + 20} y={r.y + 3} width={30} height={r.h - 6} fill="none" stroke={on ? "#e9e4dc" : "rgba(233,228,220,0.3)"} strokeWidth={0.8} />
-                    <line x1={X0 + 70} x2={X1 - 20} y1={r.y + r.h / 2} y2={r.y + r.h / 2} stroke={on ? "#e9e4dc" : "rgba(233,228,220,0.3)"} strokeWidth={0.8} strokeDasharray="2 3" />
+                    <rect x={X0 + 20} y={r.y + 3} width={30} height={r.h - 6} fill="none" stroke="var(--color-stone)" strokeOpacity={on ? 1 : 0.3} strokeWidth={0.8} />
+                    <line x1={X0 + 70} x2={X1 - 20} y1={r.y + r.h / 2} y2={r.y + r.h / 2} stroke="var(--color-stone)" strokeOpacity={on ? 1 : 0.3} strokeWidth={0.8} strokeDasharray="2 3" />
                   </>)}
                   {isBase && Array.from({ length: 7 }).map((_, k) => (
-                    <rect key={k} x={X0 + 8 + k * 24} y={r.y + 5} width={14} height={r.h - 10} rx={1.5} fill={on ? "rgba(233,228,220,0.75)" : "rgba(233,228,220,0.12)"} />
+                    <rect key={k} x={X0 + 8 + k * 24} y={r.y + 5} width={14} height={r.h - 10} rx={1.5} fill="var(--color-stone)" fillOpacity={on ? 0.75 : 0.12} />
                   ))}
                   {/* label */}
                   {(on || r.kind !== "floor" || Number(r.short) % 4 === 0) && (
-                    <text x={X0 - 10} y={r.y + r.h / 2 + 3} textAnchor="end" fontSize={on ? 9 : 7.5} fill={on ? "#38b080" : "rgba(154,160,166,0.9)"} className="font-sans tracking-widest">{r.short}</text>
+                    <text x={X0 - 10} y={r.y + r.h / 2 + 3} textAnchor="end" fontSize={on ? 9 : 7.5} fill={on ? "var(--color-gold-2)" : "var(--color-mist)"} className="font-sans tracking-widest">{r.short}</text>
                   )}
                 </g>
               );
             })}
             {/* lift indicator */}
             <motion.g animate={{ y: 0 }}>
-              <motion.rect x={X1 + 10} width={6} animate={{ y: rows[active].y, height: rows[active].h }} transition={{ type: "spring", stiffness: 300, damping: 30 }} fill="#1f9a7a" />
-              <line x1={X1 + 13} x2={X1 + 13} y1={PAD} y2={total - PAD} stroke="rgba(255,255,255,0.12)" strokeWidth={1} />
+              <motion.rect x={X1 + 10} width={6} animate={{ y: rows[active].y, height: rows[active].h }} transition={{ type: "spring", stiffness: 300, damping: 30 }} fill="var(--color-gold)" />
+              <line x1={X1 + 13} x2={X1 + 13} y1={PAD} y2={total - PAD} stroke="var(--color-fg)" strokeOpacity={0.12} strokeWidth={1} />
             </motion.g>
           </svg>
         </div>

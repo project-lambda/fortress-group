@@ -20,7 +20,7 @@ export default function AdvisorsPage() {
         <ul className="divide-y hairline border-y hairline">
           {directors.map((d, i) => (
             <Reveal key={d.slug} delay={i * 0.05}>
-              <Link href={`/team/${d.slug}`} className="group grid grid-cols-[88px_1fr] md:grid-cols-[120px_1fr_auto] items-center gap-6 md:gap-10 py-6 hover:bg-white/[0.03] transition-colors px-2">
+              <Link href={`/team/${d.slug}`} className="group grid grid-cols-[88px_1fr] md:grid-cols-[120px_1fr_auto] items-center gap-6 md:gap-10 py-6 hover:bg-fg/[0.03] transition-colors px-2">
                 <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-ink-3">{d.image && <Image src={d.image} alt={d.name} fill sizes="120px" className="object-cover object-top transition-transform duration-1000 group-hover:scale-105" />}</div>
                 <div>
                   <h3 className="font-display text-2xl md:text-4xl font-light leading-tight group-hover:text-gold transition-colors">{d.name}</h3>

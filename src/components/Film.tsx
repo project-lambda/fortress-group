@@ -32,7 +32,7 @@ export default function Film() {
           </div>
           <p className="text-sm text-mist max-w-sm">A short overview of the projects, the people and the care that goes into every Fortress address.</p>
         </Reveal>
-        <motion.div style={{ scale, borderRadius: radius }} className="relative aspect-video w-full overflow-hidden bg-ink-2 shadow-[0_40px_120px_-30px_rgba(0,0,0,0.9)]">
+        <motion.div style={{ scale, borderRadius: radius }} className="theme-dark relative aspect-video w-full overflow-hidden bg-ink-2 shadow-[0_40px_120px_-30px_rgba(0,0,0,0.9)]">
           {inView && (
             <iframe
               ref={frame}
@@ -57,10 +57,10 @@ export default function Film() {
               <p className="font-display text-2xl md:text-4xl font-light">The Fortress Group film</p>
             </div>
             <div className="pointer-events-auto flex items-center gap-2">
-              <button onClick={toggleSound} aria-pressed={!muted} className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-ink/50 backdrop-blur px-4 h-11 text-[11px] tracking-[0.25em] uppercase text-stone hover:border-gold/70 hover:text-gold-2 transition-colors">
+              <button onClick={toggleSound} aria-pressed={!muted} className="inline-flex items-center gap-2 rounded-full border border-fg/30 bg-ink/50 backdrop-blur px-4 h-11 text-[11px] tracking-[0.25em] uppercase text-stone hover:border-gold/70 hover:text-gold-2 transition-colors">
                 {muted ? <VolumeX size={15} /> : <Volume2 size={15} />}<span className="hidden sm:inline">{muted ? "Sound on" : "Mute"}</span>
               </button>
-              <button onClick={fullscreen} aria-label="Fullscreen" className="grid h-11 w-11 place-items-center rounded-full border border-white/30 bg-ink/50 backdrop-blur text-stone hover:border-gold/70 hover:text-gold-2 transition-colors"><Maximize2 size={15} /></button>
+              <button onClick={fullscreen} aria-label="Fullscreen" className="grid h-11 w-11 place-items-center rounded-full border border-fg/30 bg-ink/50 backdrop-blur text-stone hover:border-gold/70 hover:text-gold-2 transition-colors"><Maximize2 size={15} /></button>
             </div>
           </div>
         </motion.div>
