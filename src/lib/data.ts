@@ -15,6 +15,9 @@ export interface Project {
   description: string[];
   date: string;
   featured: boolean;
+  lat: number;
+  lng: number;
+  geo: "exact" | "approx";
 }
 
 export interface Person {

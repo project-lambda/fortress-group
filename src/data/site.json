@@ -90,7 +90,10 @@
         "বি: দ্র: রাজউক বিধি এবং স্বদেশ আবাসন প্রকল্প কর্তৃক নিয়মনীতি প্রযোজ্য হইবে।"
       ],
       "date": "2026-04-11",
-      "featured": true
+      "featured": true,
+      "lat": 23.835965,
+      "lng": 90.457586,
+      "geo": "approx"
     },
     {
       "id": 453,
@@ -118,7 +121,10 @@
         "https://maps.app.goo.gl/EV84vCf8icwuEFxg8"
       ],
       "date": "2025-11-05",
-      "featured": false
+      "featured": false,
+      "lat": 23.8199288,
+      "lng": 90.4554539,
+      "geo": "exact"
     },
     {
       "id": 439,
@@ -144,7 +150,10 @@
         "Land Size- 05 Katha"
       ],
       "date": "2025-11-05",
-      "featured": false
+      "featured": false,
+      "lat": 23.81374,
+      "lng": 90.456096,
+      "geo": "approx"
     },
     {
       "id": 384,
@@ -172,7 +181,10 @@
         "https://maps.app.goo.gl/NVBmR8cXbWGrEr8SA"
       ],
       "date": "2025-08-31",
-      "featured": false
+      "featured": false,
+      "lat": 23.8186386,
+      "lng": 90.4252086,
+      "geo": "exact"
     },
     {
       "id": 381,
@@ -186,7 +198,10 @@
       "gallery": [],
       "description": [],
       "date": "2025-08-31",
-      "featured": false
+      "featured": false,
+      "lat": 23.814888,
+      "lng": 90.452751,
+      "geo": "approx"
     },
     {
       "id": 378,
@@ -200,7 +215,10 @@
       "gallery": [],
       "description": [],
       "date": "2025-08-31",
-      "featured": false
+      "featured": false,
+      "lat": 23.815371,
+      "lng": 90.450713,
+      "geo": "approx"
     },
     {
       "id": 375,
@@ -214,7 +232,10 @@
       "gallery": [],
       "description": [],
       "date": "2025-08-31",
-      "featured": false
+      "featured": false,
+      "lat": 23.817062,
+      "lng": 90.452963,
+      "geo": "approx"
     },
     {
       "id": 372,
@@ -228,7 +249,10 @@
       "gallery": [],
       "description": [],
       "date": "2025-08-31",
-      "featured": false
+      "featured": false,
+      "lat": 23.81635,
+      "lng": 90.452559,
+      "geo": "approx"
     },
     {
       "id": 369,
@@ -254,7 +278,10 @@
         "Land Size- 05 Katha"
       ],
       "date": "2025-08-31",
-      "featured": false
+      "featured": false,
+      "lat": 23.813425,
+      "lng": 90.455414,
+      "geo": "approx"
     },
     {
       "id": 363,
@@ -282,7 +309,10 @@
         "https://maps.app.goo.gl/fgUoHrYoqXxCPq438"
       ],
       "date": "2025-08-31",
-      "featured": false
+      "featured": false,
+      "lat": 23.8137335,
+      "lng": 90.4563658,
+      "geo": "exact"
     },
     {
       "id": 357,
@@ -310,7 +340,10 @@
         "https://maps.app.goo.gl/cNzviSNWAeBPryot9"
       ],
       "date": "2025-08-31",
-      "featured": false
+      "featured": false,
+      "lat": 23.8128289,
+      "lng": 90.453289,
+      "geo": "exact"
     },
     {
       "id": 354,
@@ -324,7 +357,10 @@
       "gallery": [],
       "description": [],
       "date": "2025-08-31",
-      "featured": false
+      "featured": false,
+      "lat": 23.816038,
+      "lng": 90.453914,
+      "geo": "approx"
     },
     {
       "id": 347,
@@ -352,7 +388,10 @@
         "https://maps.app.goo.gl/BeSfZKi2dzKi8PfV7"
       ],
       "date": "2025-08-31",
-      "featured": false
+      "featured": false,
+      "lat": 23.8135619,
+      "lng": 90.4552686,
+      "geo": "exact"
     },
     {
       "id": 344,
@@ -366,7 +405,10 @@
       "gallery": [],
       "description": [],
       "date": "2025-08-31",
-      "featured": false
+      "featured": false,
+      "lat": 23.816452,
+      "lng": 90.45234,
+      "geo": "approx"
     },
     {
       "id": 338,
@@ -380,7 +422,10 @@
       "gallery": [],
       "description": [],
       "date": "2025-08-31",
-      "featured": false
+      "featured": false,
+      "lat": 23.817647,
+      "lng": 90.45028,
+      "geo": "approx"
     },
     {
       "id": 335,
@@ -394,7 +439,10 @@
       "gallery": [],
       "description": [],
       "date": "2025-08-31",
-      "featured": false
+      "featured": false,
+      "lat": 23.815981,
+      "lng": 90.451305,
+      "geo": "approx"
     },
     {
       "id": 332,
@@ -420,7 +468,10 @@
         "Land Size- 05 Katha"
       ],
       "date": "2025-08-31",
-      "featured": false
+      "featured": false,
+      "lat": 23.81337,
+      "lng": 90.456801,
+      "geo": "approx"
     },
     {
       "id": 329,
@@ -434,7 +485,10 @@
       "gallery": [],
       "description": [],
       "date": "2025-08-31",
-      "featured": false
+      "featured": false,
+      "lat": 23.81552,
+      "lng": 90.452842,
+      "geo": "approx"
     },
     {
       "id": 323,
@@ -448,7 +502,10 @@
       "gallery": [],
       "description": [],
       "date": "2025-08-31",
-      "featured": false
+      "featured": false,
+      "lat": 23.816927,
+      "lng": 90.450617,
+      "geo": "approx"
     },
     {
       "id": 277,
@@ -475,7 +532,10 @@
         "https://maps.app.goo.gl/q6ziBm4L55AzU1bt9"
       ],
       "date": "2025-08-30",
-      "featured": true
+      "featured": true,
+      "lat": 23.809576,
+      "lng": 90.4900376,
+      "geo": "exact"
     },
     {
       "id": 273,
@@ -503,7 +563,10 @@
         "https://maps.app.goo.gl/A1WQbGjgvenMoVuG8"
       ],
       "date": "2025-08-27",
-      "featured": false
+      "featured": false,
+      "lat": 23.8344435,
+      "lng": 90.4575713,
+      "geo": "exact"
     },
     {
       "id": 270,
@@ -530,7 +593,10 @@
         "https://maps.app.goo.gl/vzaxVUCxQ14S11av5"
       ],
       "date": "2025-08-27",
-      "featured": false
+      "featured": false,
+      "lat": 23.8153549,
+      "lng": 90.5033561,
+      "geo": "exact"
     },
     {
       "id": 267,
@@ -557,7 +623,10 @@
         "https://maps.app.goo.gl/66xvbwCf9cUY21Aq9"
       ],
       "date": "2025-08-27",
-      "featured": false
+      "featured": false,
+      "lat": 23.8133529,
+      "lng": 90.5028851,
+      "geo": "exact"
     },
     {
       "id": 264,
@@ -583,7 +652,10 @@
         "Land Size- 5 Katha"
       ],
       "date": "2025-08-27",
-      "featured": false
+      "featured": false,
+      "lat": 23.812397,
+      "lng": 90.455725,
+      "geo": "approx"
     },
     {
       "id": 260,
@@ -610,7 +682,10 @@
         "https://maps.app.goo.gl/wnGwdUH8W3ZEKHpu5"
       ],
       "date": "2025-08-27",
-      "featured": false
+      "featured": false,
+      "lat": 23.8151789,
+      "lng": 90.5033921,
+      "geo": "exact"
     },
     {
       "id": 251,
@@ -635,7 +710,10 @@
         "Land Size- 10 Katha"
       ],
       "date": "2025-08-27",
-      "featured": false
+      "featured": false,
+      "lat": 23.827914,
+      "lng": 90.371319,
+      "geo": "approx"
     },
     {
       "id": 229,
@@ -661,7 +739,10 @@
         "Land Size- 3 Katha"
       ],
       "date": "2025-08-26",
-      "featured": true
+      "featured": true,
+      "lat": 23.81165,
+      "lng": 90.456138,
+      "geo": "approx"
     },
     {
       "id": 225,
@@ -687,7 +768,10 @@
         "Land Size- 30 Katha"
       ],
       "date": "2025-08-26",
-      "featured": true
+      "featured": true,
+      "lat": 23.832812,
+      "lng": 90.457164,
+      "geo": "approx"
     },
     {
       "id": 222,
@@ -714,7 +798,10 @@
         "https://maps.app.goo.gl/Ehvh43Qq5WPJPuSU9"
       ],
       "date": "2025-08-26",
-      "featured": true
+      "featured": true,
+      "lat": 23.8005288,
+      "lng": 90.5014966,
+      "geo": "exact"
     },
     {
       "id": 218,
@@ -739,7 +826,10 @@
         "Land Size- 05 Katha"
       ],
       "date": "2025-08-26",
-      "featured": true
+      "featured": true,
+      "lat": 23.810562,
+      "lng": 90.500948,
+      "geo": "approx"
     },
     {
       "id": 58,
@@ -766,7 +856,10 @@
         "https://maps.app.goo.gl/Pg6ZfWz4ey8RbiZi8"
       ],
       "date": "2025-08-07",
-      "featured": false
+      "featured": false,
+      "lat": 23.820692,
+      "lng": 90.449189,
+      "geo": "approx"
     },
     {
       "id": 56,
@@ -793,7 +886,10 @@
         "https://maps.app.goo.gl/A1WQbGjgvenMoVuG8"
       ],
       "date": "2025-08-07",
-      "featured": false
+      "featured": false,
+      "lat": 23.821316,
+      "lng": 90.451185,
+      "geo": "approx"
     },
     {
       "id": 51,
@@ -820,7 +916,10 @@
         "https://maps.app.goo.gl/A1WQbGjgvenMoVuG8"
       ],
       "date": "2025-08-07",
-      "featured": false
+      "featured": false,
+      "lat": 23.814633,
+      "lng": 90.450514,
+      "geo": "approx"
     },
     {
       "id": 44,
@@ -837,7 +936,10 @@
         "Floor-to-ceiling windows accentuate the panoramic vistas that sweep across the Golden Gate Bridge, the downtown skyline, the artfully lit Bay Bridge and beyond. The floor plan features two bedroom suites, kitchen, living/dining room, two view terraces and ample storage space."
       ],
       "date": "2025-08-07",
-      "featured": false
+      "featured": false,
+      "lat": 23.834863,
+      "lng": 90.459829,
+      "geo": "approx"
     },
     {
       "id": 41,
@@ -861,7 +963,10 @@
         "Land Size- 10 Katha"
       ],
       "date": "2025-08-07",
-      "featured": false
+      "featured": false,
+      "lat": 23.869263,
+      "lng": 90.39764,
+      "geo": "approx"
     }
   ],
   "areas": [
