@@ -16,17 +16,17 @@ export default function TeamPage() {
       </PageHeader>
       <section className="mx-auto max-w-[1600px] px-5 md:px-10 pb-24">
         <Reveal><p className="eyebrow mb-10">Board of directors & management</p></Reveal>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-10">
           {directors.map((d, i) => (
-            <Reveal key={d.slug} delay={(i % 3) * 0.1}>
+            <Reveal key={d.slug} delay={(i % 4) * 0.08}>
               <Link href={`/team/${d.slug}`} className="group block">
                 <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-ink-3">
                   {d.image && <Image src={d.image} alt={d.name} fill sizes="33vw" className="object-cover object-top transition-transform duration-1000 group-hover:scale-105" />}
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <p className="absolute bottom-5 left-5 right-5 text-sm text-stone/90 line-clamp-3 opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-700">{d.bio[0]}</p>
+                  <p className="absolute bottom-4 left-4 right-4 text-xs text-stone/90 line-clamp-3 opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-700">{d.bio[0]}</p>
                 </div>
-                <h3 className="mt-5 font-display text-3xl font-light group-hover:text-gold transition-colors">{d.name}</h3>
-                <p className="mt-1 text-xs tracking-[0.2em] uppercase text-mist">{d.role}</p>
+                <h3 className="mt-4 font-display text-xl md:text-2xl font-light leading-tight group-hover:text-gold transition-colors">{d.name}</h3>
+                <p className="mt-1 text-[10px] tracking-[0.18em] uppercase text-mist">{d.role}</p>
               </Link>
             </Reveal>
           ))}

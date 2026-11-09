@@ -19,7 +19,6 @@ const sans = Inter({ subsets: ["latin"], variable: "--font-sans" });
 export const metadata: Metadata = {
   title: { default: `${company.name} — Premium Real Estate in Dhaka`, template: `%s — ${company.name}` },
   description: company.about,
-  icons: { icon: "/images/main-logo.png" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
