@@ -28,3 +28,9 @@ Both forms POST to `/api/lead`, which validates the payload (honeypot + per-IP r
 - `LEAD_FROM_EMAIL` — optional verified sender on your domain
 
 Without a key, leads are logged to the server console and the user still sees a success state. Every form also offers a one-click **Chat on WhatsApp** link with the enquiry pre-filled.
+
+## Deployment
+
+- **Live site:** https://emroze.dev/fortress-group (static export served by GitHub Pages from the `project-lambda/apps` repo, which checks this repo out and builds it with `GH_PAGES=1`).
+- **Form API:** https://fortress-group-nine.vercel.app (Vercel, `vercel deploy --prod`). The static site posts leads here; `/api/lead` allows the `https://emroze.dev` origin. Set `RESEND_API_KEY`, `LEAD_TO_EMAIL`, `LEAD_FROM_EMAIL` in the Vercel project to deliver emails.
+- **Publishing a change:** push to `main`, then run the apps repo's "Deploy to GitHub Pages" workflow (`gh workflow run deploy.yml --repo project-lambda/apps`). With a fine-grained PAT stored as the `APPS_DISPATCH_TOKEN` secret in this repo, that happens automatically on push.
