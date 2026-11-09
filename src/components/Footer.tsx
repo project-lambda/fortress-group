@@ -11,8 +11,11 @@ export default function Footer() {
         <div className="grid gap-14 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-3 mb-6">
-              <Image src="/images/main-logo.png" alt="Fortress Group" width={48} height={40} className="h-10 w-auto" />
-              <span className="font-display text-2xl">Fortress <span className="text-gold">Group</span></span>
+              <Image src="/images/logo-mark.png" alt="Fortress Group" width={44} height={44} className="h-10 w-auto" />
+              <span className="flex flex-col leading-none">
+                <span className="font-display text-2xl">Fortress <span className="text-gold-2">Group</span></span>
+                <span className="text-[9px] tracking-[0.32em] uppercase text-stone/60 mt-1">Build with care</span>
+              </span>
             </div>
             <p className="text-sm leading-relaxed text-mist max-w-md">{company.about}</p>
             <div className="mt-8 flex flex-wrap gap-2">
