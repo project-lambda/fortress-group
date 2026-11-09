@@ -38,7 +38,7 @@ export default function Navbar() {
         {!scrolled && !open && <div className="pointer-events-none absolute inset-x-0 top-full h-16 bg-gradient-to-b from-black/30 to-transparent" />}
         <div className="mx-auto flex max-w-[1600px] items-center justify-between px-5 md:px-10 h-20">
           <Link href="/" className="flex items-center gap-3 group">
-            <Image src="/images/logo-mark.png" alt="Fortress Group" width={40} height={40} className="h-9 w-auto" priority />
+            <Image src="/images/logo-icon.png" alt="Fortress Group" width={40} height={40} className="h-9 w-auto" priority />
             <span className="flex flex-col leading-none [text-shadow:0_1px_12px_rgba(0,0,0,.9)]">
               <span className="font-display text-xl tracking-wide">Fortress <span className="text-gold-2">Group</span></span>
               <span className="text-[8px] tracking-[0.32em] uppercase text-stone/60 mt-1">Build with care</span>
