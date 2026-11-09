@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { company, areas } from "@/lib/data";
+import Year from "./Year";
 
 export default function Footer() {
   return (
@@ -51,7 +52,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-16 flex flex-col md:flex-row items-center justify-between gap-4 border-t hairline pt-8 text-xs text-mist">
-          <p>© {new Date().getFullYear()} Fortress Group. All rights reserved.</p>
+          <p>© <Year /> Fortress Group. All rights reserved.</p>
           <p className="tracking-[0.3em] uppercase">ISO Certified · Dhaka, Bangladesh</p>
         </div>
       </div>
