@@ -6,6 +6,7 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { ArrowLeft, ArrowUpRight, BedDouble, Building2, Car, MapPin, Ruler } from "lucide-react";
 import { Reveal, ImageReveal } from "./Reveal";
 import ProjectCard from "./ProjectCard";
+import LeadForm from "./LeadForm";
 import { STATUS_LABEL, company, type Project } from "@/lib/data";
 
 function parseSpecs(lines: string[]) {
@@ -110,12 +111,7 @@ export default function ProjectDetail({ p, related }: { p: Project; related: Pro
           <Reveal className="rounded-sm border hairline bg-ink-2 p-7">
             <p className="eyebrow mb-3">Interested?</p>
             <h3 className="font-display text-3xl font-light mb-6">Book a visit to {p.name.replace(/^Fortress /, "")}</h3>
-            <form className="space-y-3" onSubmit={(e) => { e.preventDefault(); alert("Thank you — our team will call you shortly."); }}>
-              <input required placeholder="Your name" className="w-full rounded-sm border hairline bg-ink px-4 py-3 text-sm outline-none focus:border-gold/60" />
-              <input required placeholder="Phone number" type="tel" className="w-full rounded-sm border hairline bg-ink px-4 py-3 text-sm outline-none focus:border-gold/60" />
-              <textarea placeholder="Message (optional)" rows={3} className="w-full rounded-sm border hairline bg-ink px-4 py-3 text-sm outline-none focus:border-gold/60" />
-              <button className="w-full rounded-sm bg-gold py-3.5 text-xs tracking-[0.25em] uppercase text-ink hover:bg-gold-2 transition-colors">Request callback</button>
-            </form>
+            <LeadForm compact source={`project:${p.slug}`} project={p.title} submitLabel="Request callback" />
             <div className="mt-6 flex flex-col gap-2 text-sm text-stone/70">
               <a href={`tel:${company.phone.replace(/\s/g, "")}`} className="hover:text-gold">{company.phone}</a>
               <a href={`tel:${company.phone2.replace(/\s/g, "")}`} className="hover:text-gold">{company.phone2}</a>

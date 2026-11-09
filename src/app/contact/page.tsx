@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Mail, MapPin, Phone } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
-import ContactForm from "@/components/ContactForm";
+import LeadForm from "@/components/LeadForm";
 import { Reveal } from "@/components/Reveal";
-import { company } from "@/lib/data";
+import { company, projects } from "@/lib/data";
 
 export const metadata: Metadata = { title: "Contact" };
 
@@ -31,7 +31,7 @@ export default function ContactPage() {
         </div>
         <Reveal delay={0.15}>
           <h2 className="font-display text-4xl font-light mb-8">Request a <em className="text-gold">callback</em></h2>
-          <ContactForm />
+          <LeadForm source="contact-page" projects={projects.map((p) => ({ slug: p.slug, title: p.title }))} />
         </Reveal>
       </section>
     </>
