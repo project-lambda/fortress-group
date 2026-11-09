@@ -23,7 +23,7 @@ export default function Home() {
         <ShowcaseGrid eyebrow="Sale ongoing" title={<>Choose your <em className="text-gold">dream</em> project</>} items={featuredProjects} href="/projects?status=sale-ongoing" />
       </div>
       <AboutTeaser />
-      <Construction structure={{ basements: 2, ground: true, mezzanine: true, floors: 16, raw: "B2+B1+G+M+16", code: "B2+B1+G+M+16" }} />
+      <Construction towers={2} eyebrow="Fortress Green Touch · Shawdesh Sornali" title={<>Two towers rising by the <em className="text-gold">lake</em></>} structure={{ basements: 2, ground: true, mezzanine: true, floors: 16, raw: "B2+B1+G+M+16", code: "B2+B1+G+M+16" }} />
       <AreasGrid areas={areas} />
       <ShowcaseGrid eyebrow="Ongoing" title={<>Rising across <em className="text-gold">Dhaka</em></>} items={ongoingProjects.filter((p) => !p.featured)} href="/projects?status=ongoing" />
       <Experts />

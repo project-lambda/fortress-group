@@ -97,7 +97,7 @@ export default function ProjectDetail({ p, related }: { p: Project; related: Pro
       </section>
 
       {parsed.structure && (
-        <Construction structure={parsed.structure} eyebrow={`Building ${p.name.replace(/^Fortress /, "")}`} title={<>{parsed.structure.floors} floors, rising from <em className="text-gold">{p.area ?? "Dhaka"}</em></>} />
+        <Construction towers={parseInt(parsed.facts.find((f) => f.key === "towers")?.value ?? "1", 10)} structure={parsed.structure} eyebrow={`Building ${p.name.replace(/^Fortress /, "")}`} title={<>{parsed.structure.floors} floors, rising from <em className="text-gold">{p.area ?? "Dhaka"}</em></>} />
       )}
 
       {related.length > 0 && (
