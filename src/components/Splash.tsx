@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 
 const WORDS = [
@@ -48,6 +49,15 @@ export default function Splash() {
           <motion.div className="absolute inset-0 flex items-center justify-center" exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.5 } }}>
             <div className="relative w-full max-w-[1400px] px-6 md:px-16 grid md:grid-cols-[1fr_auto] items-center gap-10">
               <div className="relative">
+                {/* brand mark: rises from its own glow, then settles above the wordmark */}
+                <motion.div initial={{ opacity: 0, y: 24, scale: 0.9 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ delay: 0.1, duration: 1, ease: [0.16, 1, 0.3, 1] }} className="relative mb-8 md:mb-10 flex items-center gap-4">
+                  <motion.span className="absolute -inset-6 rounded-full bg-gold/25 blur-2xl" initial={{ opacity: 0, scale: 0.6 }} animate={{ opacity: [0, 1, 0.45], scale: [0.6, 1.2, 1] }} transition={{ delay: 0.2, duration: 1.6, ease: "easeOut" }} />
+                  <Image src="/images/logo-mark.png" alt="Fortress Group" width={192} height={218} priority className="relative h-16 w-auto md:h-24 drop-shadow-[0_8px_30px_rgba(31,154,122,0.45)]" />
+                  <motion.span initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.7, duration: 0.8 }} className="relative flex flex-col leading-none">
+                    <span className="font-display text-2xl md:text-4xl tracking-wide text-stone">Fortress <span className="text-gold-2">Group</span></span>
+                    <span className="mt-1.5 text-[9px] md:text-[10px] tracking-[0.35em] uppercase text-stone/60">Build with care</span>
+                  </motion.span>
+                </motion.div>
                 {WORDS.map((w, i) => (
                   <div key={w.t} className="overflow-hidden" style={{ paddingLeft: w.x }}>
                     <motion.p initial={{ y: "110%" }} animate={{ y: 0 }} transition={{ delay: 0.3 + i * 0.18, duration: 1.1, ease: [0.16, 1, 0.3, 1] }} className={`font-display font-light leading-[0.9] text-[16vw] md:text-[9vw] ${w.gold ? "text-gold italic" : "text-stone"}`}>
@@ -55,7 +65,7 @@ export default function Splash() {
                     </motion.p>
                   </div>
                 ))}
-                <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.4, duration: 1 }} className="eyebrow mt-8">Fortress Group · Dhaka</motion.p>
+                <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.4, duration: 1 }} className="eyebrow mt-8">Premium residences · Dhaka, Bangladesh</motion.p>
               </div>
 
               <motion.svg viewBox="0 0 240 560" className="hidden md:block h-[70vh] w-auto" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}>
