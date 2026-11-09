@@ -1,5 +1,5 @@
 "use client";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AnimatePresence, LayoutGroup, motion } from "motion/react";
 import { LayoutGrid, Rows3, Search } from "lucide-react";
@@ -19,10 +19,17 @@ export default function ProjectsExplorer({ projects, areas }: { projects: Projec
   const [q, setQ] = useState("");
   const [view, setView] = useState<"grid" | "list">("grid");
 
+  const topRef = useRef<HTMLDivElement>(null);
+  const scrollToTop = () => {
+    const el = topRef.current; if (!el) return;
+    const y = el.getBoundingClientRect().top + window.scrollY - 88;
+    if (window.scrollY > y) window.scrollTo({ top: y, behavior: "smooth" });
+  };
   const set = (k: string, v: string) => {
     const n = new URLSearchParams(sp.toString());
     if (v === "all") n.delete(k); else n.set(k, v);
     router.replace(`/projects${n.toString() ? `?${n}` : ""}`, { scroll: false });
+    scrollToTop();
   };
 
   const list = useMemo(() => projects.filter((p) =>
@@ -32,7 +39,7 @@ export default function ProjectsExplorer({ projects, areas }: { projects: Projec
   ), [projects, areas, status, area, q]);
 
   return (
-    <div className="mx-auto max-w-[1600px] px-5 md:px-10 pb-32">
+    <div ref={topRef} className="mx-auto max-w-[1600px] px-5 md:px-10 pb-32 min-h-[80vh]">
       <div className="sticky top-20 z-30 -mx-5 md:-mx-10 px-5 md:px-10 py-4 bg-ink/80 backdrop-blur-xl border-y hairline mb-10">
         <div className="flex flex-col lg:flex-row lg:items-center gap-4">
           <LayoutGroup id="status">
@@ -51,11 +58,11 @@ export default function ProjectsExplorer({ projects, areas }: { projects: Projec
           </Select>
           <label className="flex items-center gap-2 rounded-full border hairline bg-ink-2 px-4 py-2 text-xs lg:ml-auto">
             <Search size={14} className="text-mist" />
-            <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search projects" className="bg-transparent outline-none placeholder:text-mist w-40" />
+            <input value={q} onChange={(e) => { setQ(e.target.value); scrollToTop(); }} placeholder="Search projects" className="bg-transparent outline-none placeholder:text-mist w-40" />
           </label>
           <div className="hidden md:flex rounded-full border hairline overflow-hidden">
-            <button aria-label="Grid" onClick={() => setView("grid")} className={`p-2.5 ${view === "grid" ? "bg-stone text-ink" : "text-mist"}`}><LayoutGrid size={14} /></button>
-            <button aria-label="List" onClick={() => setView("list")} className={`p-2.5 ${view === "list" ? "bg-stone text-ink" : "text-mist"}`}><Rows3 size={14} /></button>
+            <button aria-label="Grid" onClick={() => { setView("grid"); scrollToTop(); }} className={`p-2.5 ${view === "grid" ? "bg-stone text-ink" : "text-mist"}`}><LayoutGrid size={14} /></button>
+            <button aria-label="List" onClick={() => { setView("list"); scrollToTop(); }} className={`p-2.5 ${view === "list" ? "bg-stone text-ink" : "text-mist"}`}><Rows3 size={14} /></button>
           </div>
         </div>
       </div>
